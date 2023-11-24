@@ -4,7 +4,7 @@
 @media only screen and (max-width: 400px) { /* Queste sono media queries*/
 
     body{
-        background-image: url("images/table.png");
+        /*background-image: url("images/table.png"); */
         background-size: cover;
         background-color: #F5CF8E;
         text-align: center;
