@@ -17,6 +17,7 @@ class Deck { //class definition for our deck game including total of 108 cards, 
                   [ "SWITCH", 'B' ], [ "+2CARDS", 'B' ], ["+2CARDS", 'B'], ["CHANGE", "SPECIAL"], ["CHANGE", "SPECIAL"], ["CHANGE", "SPECIAL"], ["CHANGE", "SPECIAL"],
                   ["+4CARDS", "SPECIAL"], ["+4CARDS", "SPECIAL"], ["+4CARDS", "SPECIAL"], ["+4CARDS", "SPECIAL"]];
     }
+    
 
     randomize(){ //method to shuffle the deck at the start of game.
       this.deck.sort(() => (Math.random() > .5) ? 1 : -1);

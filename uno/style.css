@@ -1,13 +1,36 @@
 
 
-body{
-    background-image: url("images/tablee.png");
-    background-size: cover;
-    text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 25px;
+/* Mobile Styles */
+@media only screen and (max-width: 400px) { /* Queste sono media queries*/
 
+    body{
+        background-image: url("images/table.png");
+        background-size: cover;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 25px;
+    }
+    
+}
+  
+/* Tablet Styles */
+@media only screen and (min-width: 401px) and (max-width: 960px) {
+    body {
+      background-color: #F5CF8E; /* Yellow */
+    }
+}
+  
+/* Desktop Styles */
+@media only screen and (min-width: 961px) {
 
+    body{
+        background-image: url("images/tablee.png");
+        background-size: cover;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 25px;
+    }
+    
 }
 
 body h1{
