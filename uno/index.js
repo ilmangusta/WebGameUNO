@@ -195,6 +195,7 @@ function StartNewGame(deck) {
   body.prepend(modale);
 }
 
+myHand = [];
 createField(deck);
 StartNewGame(deck);
 
@@ -205,8 +206,14 @@ function PescaLeCarte(deck) {
 
   const myCardContainer = document.querySelector(".my-cards-container");
   for (var i = 0; i < 8; i++) {
-    console.log(arrayCarte[i]);
     card = arrayCarte.shift();
+    myHand.push(card);
+  }
+  console.log("myhand: " + myHand);
+  for (var i = 0; i < 8; i++) {
+    card = myHand[i];
+
+    console.log(card, i);
     const cardContainer = document.createElement("div");
     cardContainer.classList.add("my-card-element");
     var link = "url('" + card[2] + "')";
@@ -217,7 +224,7 @@ function PescaLeCarte(deck) {
     cardContainer.addEventListener(
       "click",
       () => {
-        usaCarta(card);
+        usaCarta(card, myHand, i);
         cardContainer.remove();
       },
       true
@@ -225,7 +232,8 @@ function PescaLeCarte(deck) {
   }
 }
 
-function usaCarta(carta) {
+function usaCarta(carta, myHand, idx) {
+  console.log(carta, myHand);
   const cardContainer = document.querySelector(".ultima-carta");
   cardContainer.innerHTML = "";
   cardContainer.classList.add("my-card-element");

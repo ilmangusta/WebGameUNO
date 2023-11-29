@@ -30,6 +30,7 @@
   background-color: #fff;
   border: 3px solid #000;
   background-size: cover;
+  border-radius: 20px;
 }
 
 .deck {
@@ -117,6 +118,7 @@
   border-radius: 12px;
   background-size: cover;
   border: 3px solid #000;
+  border-radius: 20px;
 }
 
 .my-card-element h3 {
