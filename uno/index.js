@@ -231,4 +231,5 @@ function usaCarta(carta) {
   cardContainer.classList.add("my-card-element");
   var link = "url('" + carta[2] + "')";
   cardContainer.style.backgroundImage = link;
+  cardContainer.style.backgroundSize = "cover";
 }

@@ -26,28 +26,29 @@
 
 .ultima-carta {
   width: 240px;
-  height: 350px;
+  height: 340px;
   background-color: #fff;
   border: 3px solid #000;
+  background-size: cover;
 }
 
 .deck {
   width: 240px;
   height: 350px;
   position: relative;
-  background-size: auto;
+  background-size: cover;
 }
 
 .deck div {
   position: absolute;
   top: 0;
   left: 0;
+
   width: 240px;
   height: 350px;
   border-radius: 8px;
   background-image: url(images/back.png);
   background-size: cover;
-
   border: 3px solid #000;
 }
 
@@ -68,7 +69,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 400px;
+  height: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -115,7 +116,6 @@
   height: 350px;
   border-radius: 8px;
   background-size: cover;
-  background-size: auto;
   border: 3px solid #000;
 }
 
