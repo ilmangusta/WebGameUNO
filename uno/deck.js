@@ -1,3 +1,5 @@
+//const prompt = require("prompt-sync")();
+
 class Deck {
   //class definition for our deck game including total of 108 cards, 25 for each color and 8 special cards.
   deck = [];
@@ -154,79 +156,122 @@ class Deck {
 
 d = new Deck();
 deck = d.deck;
-//deck.randomize();
-console.log(deck[1]);
+d.randomize();
 
-function createField(deck) {
-  const cardContainer = document.querySelector(".ultima-carta");
+//---------------------------------------------- element html
 
-  //carta=estraiCarta();
-  carta = deck.shift();
+let startgamebtn = document.getElementById("btn-start");
+startgamebtn.addEventListener("click", () => startgame());
 
-  cardContainer.classList.add("my-card-element");
-  var link = "url('" + carta[2] + "')";
-  cardContainer.style.backgroundImage = link;
-}
+let surrenderbtn, drawcardbtn;
 
-function StartNewGame(deck) {
-  const body = document.querySelector("body");
+let msg = document.getElementById("msg"); //messaggio di gioco
+let gamearea = document.getElementById("game-area"); //per pulire le scritte
+let fieldhtml = document.getElementById("field");
+let hand = document.getElementById("hand");
 
-  const overlay = document.createElement("div");
-  overlay.classList.add("black-overlay");
-  body.prepend(overlay);
+let cards = document.getElementById("cards"); //per aggiungere carte
+let started = false;
 
-  const modale = document.createElement("div");
-  modale.classList.add("prompt-nome");
+//---------------------------------------------- player
 
-  modale.prepend(document.createElement("input"));
-  const btn = document.createElement("button");
-  btn.textContent = "Inizia";
-  btn.addEventListener(
-    "click",
-    () => {
-      PescaLeCarte(deck);
-      modale.remove();
-      overlay.remove();
-    },
-    true
-  );
-  modale.append(btn);
-  body.prepend(modale);
-}
-
-createField(deck);
-StartNewGame(deck);
-
-function PescaLeCarte(deck) {
-  console.log("pippo");
-
-  const arrayCarte = deck;
-
-  const myCardContainer = document.querySelector(".my-cards-container");
-  for (var i = 0; i < 8; i++) {
-    console.log(arrayCarte[i]);
-    card = arrayCarte.shift();
-    const cardContainer = document.createElement("div");
-    cardContainer.classList.add("my-card-element");
-    var link = "url('" + card[2] + "')";
-    cardContainer.style.backgroundImage = link;
-
-    myCardContainer.prepend(cardContainer);
-    cardContainer.addEventListener(
-      "click",
-      () => {
-        usaCarta(card);
-        cardContainer.remove();
-      },
-      true
-    );
+class Player {
+  //class definition for all player actions.
+  hand = [];
+  constructor() {
+    this.hand = [];
+  }
+  draw(n, deck) {
+    //draw new card;
+    for (var i = 0; i < n; i++) {
+      var card = deck.shift();
+      this.hand.push(card);
+      var newcardbtn = document.createElement("button");
+      newcardbtn.textContent = card;
+      newcardbtn.addEventListener("click", () => playcard(card));
+      cards.appendChild(newcardbtn);
+    }
+    console.log(this.hand);
+  }
+  newHand(deck) {
+    //new hand
+    this.draw(7, deck);
+  }
+  getHand() {
+    return this.hand;
   }
 }
 
-function usaCarta(carta) {
-  const cardContainer = document.querySelector(".ultima-carta");
-  cardContainer.innerHTML = "";
-  cardContainer.classList.add("my-card-element");
-  var link = "url('" + carta[2] + "')";
-  cardContainer.style.backgroundImage = link;
+//---------------------------------------------- game field
+
+let field = {
+  number: 0,
+  color: null,
+};
+
+function newField(deck) {
+  //search for 1st valid card of the game
+  for (var i = 0; i < deck.length; i++) {
+    if (deck[i][0] == "+2CARDS" || deck[i][0] == "+4CARDS") {
+      continue;
+    }
+    if (deck[i][0] >= 0 || deck[i][0] <= 9) {
+      field.number = deck[i][0];
+      field.color = deck[i][1];
+      d.deck.shift();
+      return;
+    }
+  }
+}
+
+function cleanfield() {
+  //gamearea.innerHTML="";
+  fieldhtml.innerHTML = "";
+  hand.innerHTML = "";
+  cards.innerHTML = "";
+  document.body.removeChild(surrenderbtn);
+  document.body.removeChild(drawcardbtn);
+}
+
+//---------------------------------------------- startgame
+
+function startgame() {
+  if (started) {
+    cleanfield();
+  }
+  started = true;
+  newField(deck);
+  console.log(field);
+  msg.textContent = "Match begin. Play a card or draw one!";
+  fieldhtml.textContent =
+    "The actual field is:" + field.number + "  " + field.color;
+  hand.textContent = "Your actual hand is:";
+
+  surrenderbtn = document.createElement("button");
+  surrenderbtn.textContent = "Surrender!";
+  surrenderbtn.addEventListener("click", () => endgame());
+  document.body.appendChild(surrenderbtn);
+
+  drawcardbtn = document.createElement("button");
+  drawcardbtn.textContent = "Draw card!";
+  drawcardbtn.addEventListener("click", () => drawcard(player1));
+  document.body.appendChild(drawcardbtn);
+
+  let player1 = new Player();
+  player1.newHand(deck);
+}
+
+function endgame() {
+  started = false;
+  cleanfield();
+  msg.textContent = "Partita Conclusa, hai perso";
+}
+
+function drawcard(player) {
+  player.draw(1, deck);
+  alert("Hai pescato una carta");
+}
+
+function playcard(card) {
+  console.log("prova carta: " + card);
 }
