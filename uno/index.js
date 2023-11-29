@@ -166,6 +166,7 @@ function createField(deck) {
   cardContainer.classList.add("my-card-element");
   var link = "url('" + carta[2] + "')";
   cardContainer.style.backgroundImage = link;
+  cardContainer.style.backgroundSize = "cover";
 }
 
 function StartNewGame(deck) {
@@ -210,6 +211,7 @@ function PescaLeCarte(deck) {
     cardContainer.classList.add("my-card-element");
     var link = "url('" + card[2] + "')";
     cardContainer.style.backgroundImage = link;
+    cardContainer.style.backgroundSize = "cover";
 
     myCardContainer.prepend(cardContainer);
     cardContainer.addEventListener(
