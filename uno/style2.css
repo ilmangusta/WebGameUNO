@@ -12,7 +12,7 @@
   flex-flow: row;
   justify-content: center;
   position: relative;
-  padding: 10%;
+  padding: 5%;
   background-image: url("images/tablee.png");
   background-position: center;
   background-size: cover;
@@ -27,7 +27,7 @@
 .area-button {
   display: flex;
   flex-flow: column;
-  padding: 10%;
+  padding: 5%;
   gap: 20px;
 }
 
@@ -47,7 +47,7 @@
 
 .deck {
   width: 240px;
-  height: 380px;
+  height: 370px;
   position: relative;
   background-size: cover;
 }

@@ -204,7 +204,6 @@ function StartNewGame(deck) {
   btn.addEventListener(
     "click",
     () => {
-      setButtonRestart(deck);
       PescaLeCarte(deck);
       modale.remove();
       overlay.remove();
