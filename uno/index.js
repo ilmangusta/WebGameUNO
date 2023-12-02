@@ -169,6 +169,25 @@ function createField(deck) {
   cardContainer.style.backgroundSize = "cover";
 }
 
+function setButtonRestart(deck) {
+  const gamecontainer = document.querySelector("body");
+  const btndiv = document.createElement("div");
+  btndiv.classList.add("restart");
+  const btn = document.createElement("button");
+
+  btn.textContent = "Inizia nuova partita";
+  btn.addEventListener(
+    "click",
+    () => {
+      window.location = "http://127.0.0.1:5500/uno/index.html";
+    },
+    true
+  );
+  btndiv.append(btn);
+  //gamecontainer.prepend(btndiv);
+  gamecontainer.prepend(btndiv);
+}
+
 function StartNewGame(deck) {
   const body = document.querySelector("body");
 
@@ -185,6 +204,7 @@ function StartNewGame(deck) {
   btn.addEventListener(
     "click",
     () => {
+      setButtonRestart(deck);
       PescaLeCarte(deck);
       modale.remove();
       overlay.remove();
