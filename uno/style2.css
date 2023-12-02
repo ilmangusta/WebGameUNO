@@ -8,11 +8,11 @@
 .game-container {
   width: 100vw;
   height: 100vh;
-  background-color: green;
   display: flex;
+  flex-flow: row;
   justify-content: center;
   position: relative;
-  padding: 100px;
+  padding: 10%;
   background-image: url("images/tablee.png");
   background-position: center;
   background-size: cover;
@@ -21,7 +21,19 @@
 .game-field {
   display: flex;
   gap: 20px;
-  justify-content: center;
+  justify-content: right;
+}
+
+.area-button {
+  display: flex;
+  flex-flow: column;
+  padding: 10%;
+  gap: 20px;
+}
+
+.area-button .div {
+  background-color: rgba(0, 128, 0, 0.537);
+  size: 5%;
 }
 
 .ultima-carta {
@@ -44,7 +56,6 @@
   position: absolute;
   top: 0;
   left: 0;
-
   width: 240px;
   height: 380px;
   border-radius: 8px;
@@ -64,16 +75,18 @@
 }
 
 .my-cards-container {
-  background-image: url("images/table.png");
+  background-color: transparent;
   background-size: cover;
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 400px;
+  height: 35%;
   display: flex;
+  gap: 2px;
   justify-content: center;
   align-items: center;
+  margin-bottom: 30px;
 }
 
 .black-overlay {
@@ -109,10 +122,22 @@
   width: 100%;
 }
 
+.restart button {
+  width: 100vw;
+  height: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("images/tablee.png");
+  background-position: center;
+  background-size: cover;
+}
+
 .my-card-element {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-position: center;
   width: 240px;
   height: 370px;
   border-radius: 12px;
