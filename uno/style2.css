@@ -20,7 +20,6 @@
 
 .game-field {
   display: flex;
-  gap: 20px;
   justify-content: right;
 }
 
@@ -38,11 +37,12 @@
 
 .ultima-carta {
   width: 240px;
-  height: 380px;
-  background-color: #fff;
+  height: 370px;
+  background-color: transparent;
   border: 3px solid #000;
   background-size: cover;
   border-radius: 20px;
+  margin: 10px;
 }
 
 .deck {
@@ -50,6 +50,7 @@
   height: 370px;
   position: relative;
   background-size: cover;
+  margin: 10px;
 }
 
 .deck div {
