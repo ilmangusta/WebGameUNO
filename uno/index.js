@@ -160,14 +160,14 @@ console.log(deck[1]);
 function createField(deck) {
   const cardContainer = document.querySelector(".ultima-carta");
 
-  //carta=estraiCarta();
+  const image = document.createElement("img");
   carta = deck.shift();
-
-  cardContainer.classList.add("my-card-element");
-  var link = "url('" + carta[2] + "')";
-  cardContainer.style.backgroundImage = link;
+  image.src = carta[2];
+  cardContainer.prepend(image);
+  //carta=estraiCarta();
 }
 
+/*
 function setButtonRestart(deck) {
   const gamecontainer = document.querySelector("body");
   const btndiv = document.createElement("div");
@@ -185,7 +185,7 @@ function setButtonRestart(deck) {
   btndiv.append(btn);
   //gamecontainer.prepend(btndiv);
   gamecontainer.prepend(btndiv);
-}
+}*/
 
 function StartNewGame(deck) {
   const body = document.querySelector("body");
@@ -203,7 +203,7 @@ function StartNewGame(deck) {
   btn.addEventListener(
     "click",
     () => {
-      PescaLeCarte(deck);
+      PescaLeCarte(8, deck);
       modale.remove();
       overlay.remove();
     },
@@ -217,45 +217,48 @@ myHand = [];
 createField(deck);
 StartNewGame(deck);
 
-function PescaLeCarte(deck) {
-  console.log("pippo");
-
-  const arrayCarte = deck;
-
-  const myCardContainer = document.querySelector(".my-cards-container");
-  for (var i = 0; i < 8; i++) {
-    card = arrayCarte.shift();
+function PescaLeCarte(n, deck) {
+  for (var i = 0; i < n; i++) {
+    card = deck.shift();
     myHand.push(card);
   }
-  console.log("myhand: " + myHand);
-  for (var i = 0; i < 8; i++) {
-    card = myHand[i];
+  viewMano();
+}
 
-    console.log(card, i);
+function usaCarta(e) {
+  const index = e.target.closest("div").getAttribute("data-number");
+
+  console.log(myHand, index, myHand[index]);
+  const cardContainer = document.querySelector(".ultima-carta");
+  cardContainer.innerHTML = "";
+
+  const image = document.createElement("img");
+  image.src = myHand[index][2];
+  cardContainer.prepend(image);
+
+  myHand.splice(index, 1);
+}
+
+function viewMano() {
+  const myCardContainer = document.querySelector(".my-cards-container");
+  myCardContainer.innerHTML = "";
+  for (var i = 0; i < myHand.length; i++) {
+    card = myHand[i];
     const cardContainer = document.createElement("div");
     cardContainer.classList.add("my-card-element");
-    var link = "url('" + card[2] + "')";
-    cardContainer.style.backgroundImage = link;
-    cardContainer.style.backgroundSize = "cover";
+    cardContainer.setAttribute("data-number", i);
+    const image = document.createElement("img");
+    image.src = card[2];
+    cardContainer.prepend(image);
 
     myCardContainer.prepend(cardContainer);
     cardContainer.addEventListener(
       "click",
-      () => {
-        usaCarta(card, myHand, i);
-        cardContainer.remove();
+      (e) => {
+        usaCarta(e);
+        viewMano();
       },
       true
     );
   }
-}
-
-function usaCarta(carta, myHand, idx) {
-  console.log(carta, myHand);
-  const cardContainer = document.querySelector(".ultima-carta");
-  cardContainer.innerHTML = "";
-  cardContainer.classList.add("my-card-element");
-  var link = "url('" + carta[2] + "')";
-  cardContainer.style.backgroundImage = link;
-  cardContainer.style.backgroundSize = "cover";
 }

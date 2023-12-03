@@ -1,8 +1,6 @@
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "Roboto", sans-serif;
 }
 
 @media (max-width: 600px) {
@@ -25,8 +23,19 @@
   .game-field {
     display: flex;
     flex-flow: row;
-    padding: 10px;
-    row-gap: 50px;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding-top: 50px;
+  }
+
+  .unologo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .unologo img {
+    width: 200px;
   }
 
   .area-button {
@@ -35,58 +44,47 @@
     gap: 10px;
     align-items: center;
     justify-content: center;
-    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 50px;
   }
 
   .area-button button {
-    height: 20px;
+    height: 30px;
     width: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 12px;
+    border-radius: 8px;
     font-family: "Courier New", Courier, monospace;
     background-color: rgb(3, 123, 83);
     font-size: x-small;
   }
 
   .ultima-carta {
-    width: 120px;
-    height: 250px;
-    background-color: transparent;
+  }
+
+  .ultima-carta img {
+    width: 140px;
     border: 3px solid #000;
     border-radius: 20px;
-    background-position: center;
-    background-size: cover;
   }
 
   .deck {
-    width: 120px;
-    height: 250px;
+    height: 220px;
+    width: 150px;
     position: relative;
-    margin: 10px;
-    background-image: url(images/back.png);
-    background-position: center;
-    background-size: cover;
-    object-fit: contain;
-    border-radius: 20px;
-    border: 3px solid #000;
-    background-image: center;
-    background-position: 10px;
   }
 
   .deck div {
     position: absolute;
     top: 0;
-    left: 0;
-    width: 120px;
-    height: 250px;
-    background-image: url(images/back.png);
-    background-size: cover;
-    background-position: center;
-    border-radius: 20px;
+  }
+
+  .deck img {
+    background-color: transparent;
+    width: 140px;
     border: 3px solid #000;
-    background-position: -40px;
+    border-radius: 20px;
   }
 
   .deck .card-decoratore-2 {
@@ -100,14 +98,12 @@
   }
 
   .my-cards-container {
-    background-color: transparent;
-    background-size: cover;
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 300px;
     display: flex;
-    margin-bottom: 30px;
+    margin-bottom: 100px;
+    padding-bottom: 20px;
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
   }
@@ -153,17 +149,19 @@
 
   .my-card-element {
     display: flex;
-    width: 130px;
-    height: 250px;
-    border-radius: 20px;
-    border: 3px solid #000;
-    background-size: cover;
-    background-image: center;
+    justify-content: center;
+    align-items: center;
     background-position: center;
   }
 
   .my-card-element h3 {
     color: #fff;
+  }
+
+  .my-card-element img {
+    width: 110px;
+    border: 3px solid #000;
+    border-radius: 20px;
   }
 
   .footer {
@@ -188,26 +186,36 @@
     width: 100vw;
     height: 100vh;
     display: flex;
-    flex-flow: row;
-    justify-content: center;
+    flex-flow: column;
     position: relative;
-    padding: 5%;
+    padding: 5px;
     background-position: center;
     background-size: cover;
   }
 
   .game-field {
     display: flex;
-    justify-content: right;
+    justify-content: center;
+    gap: 50px;
+  }
+
+  .unologo {
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+  }
+  .unologo img {
+    width: 400px;
   }
 
   .area-button {
     display: flex;
-    flex-flow: column;
-    padding: 100px;
+    flex-flow: row;
+    padding-top: 15px;
+    padding-bottom: 70px;
     gap: 30px;
-    size: 10%;
     align-items: center;
+    justify-content: center;
   }
 
   .area-button button {
@@ -219,39 +227,35 @@
     border-radius: 12px;
     font-family: "Courier New", Courier, monospace;
     font-size: large;
-    background-color: rgb(3, 123, 83);
+    background-color: rgba(197, 200, 7, 0.715);
   }
 
   .ultima-carta {
-    width: 240px;
-    height: 370px;
-    background-color: transparent;
-    border: 3px solid #000;
     background-size: cover;
-    border-radius: 20px;
-    margin: 10px;
     background-position: center;
+  }
+
+  .ultima-carta img {
+    width: 250px;
+    border: 3px solid #000;
+    border-radius: 20px;
   }
 
   .deck {
     width: 240px;
-    height: 370px;
+    height: 330px;
     position: relative;
-    background-size: cover;
-    margin: 10px;
-    background-position: center;
   }
 
   .deck div {
     position: absolute;
     top: 0;
-    left: 0;
+  }
+
+  .deck img {
     width: 240px;
-    height: 380px;
-    border-radius: 20px;
-    background-image: url(images/back.png);
-    background-size: cover;
     border: 3px solid #000;
+    border-radius: 20px;
   }
 
   .deck .card-decoratore-2 {
@@ -270,11 +274,13 @@
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 40%;
     display: flex;
     align-items: center;
     justify-content: start;
-    margin-bottom: 30px;
+    padding-bottom: 0px;
+    margin-bottom: 60px;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
   }
 
   .black-overlay {
@@ -321,16 +327,16 @@
     justify-content: center;
     align-items: center;
     background-position: center;
-    width: 240px;
-    height: 370px;
-    border-radius: 12px;
-    background-size: cover;
-    border: 3px solid #000;
-    border-radius: 20px;
   }
 
   .my-card-element h3 {
     color: #fff;
+  }
+
+  .my-card-element img {
+    width: 180px;
+    border: 3px solid #000;
+    border-radius: 20px;
   }
 
   @media only screen and (max-width: 600px) {
@@ -346,7 +352,7 @@
   }
 
   .footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     height: 25px;
     width: 100%;
