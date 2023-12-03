@@ -6,8 +6,8 @@ class Deck {
     this.deck = [
       [0, "R", "cardsimages/0r.png"],
       [1, "R", "cardsimages/1r.png"],
-      [2, "R", "cardsimages/1r.png"],
-      [3, "R", "cardsimages/1r.png"],
+      [2, "R", "cardsimages/2r.png"],
+      [3, "R", "cardsimages/3r.png"],
       [4, "R", "cardsimages/1r.png"],
       [5, "R", "cardsimages/1r.png"],
       [6, "R", "cardsimages/1r.png"],
@@ -166,7 +166,6 @@ function createField(deck) {
   cardContainer.classList.add("my-card-element");
   var link = "url('" + carta[2] + "')";
   cardContainer.style.backgroundImage = link;
-  cardContainer.style.backgroundSize = "cover";
 }
 
 function setButtonRestart(deck) {

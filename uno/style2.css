@@ -1,169 +1,356 @@
-@media only screen and (max-width: 600px) {
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+@media (max-width: 600px) {
   body {
     background-color: lightblue;
+    background-image: url("images/tablee.png");
+    background-position: center;
+    background-size: cover;
+  }
+
+  .game-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-flow: column;
+    position: relative;
+    padding: 20px;
+  }
+
+  .game-field {
+    display: flex;
+    flex-flow: row;
+    padding: 10px;
+    row-gap: 50px;
+  }
+
+  .area-button {
+    display: flex;
+    flex-flow: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+  }
+
+  .area-button button {
+    height: 20px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-family: "Courier New", Courier, monospace;
+    background-color: rgb(3, 123, 83);
+    font-size: x-small;
+  }
+
+  .ultima-carta {
+    width: 120px;
+    height: 250px;
+    background-color: transparent;
+    border: 3px solid #000;
+    border-radius: 20px;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .deck {
+    width: 120px;
+    height: 250px;
+    position: relative;
+    margin: 10px;
+    background-image: url(images/back.png);
+    background-position: center;
+    background-size: cover;
+    object-fit: contain;
+    border-radius: 20px;
+    border: 3px solid #000;
+    background-image: center;
+    background-position: 10px;
+  }
+
+  .deck div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 120px;
+    height: 250px;
+    background-image: url(images/back.png);
+    background-size: cover;
+    background-position: center;
+    border-radius: 20px;
+    border: 3px solid #000;
+    background-position: -40px;
+  }
+
+  .deck .card-decoratore-2 {
+    top: -4px;
+    left: -4px;
+  }
+
+  .deck .card-decoratore-3 {
+    top: -8px;
+    left: -8px;
+  }
+
+  .my-cards-container {
+    background-color: transparent;
+    background-size: cover;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 300px;
+    display: flex;
+    margin-bottom: 30px;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+  }
+
+  .black-overlay {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background-color: #00000078;
+    z-index: 1;
+  }
+
+  .prompt-nome {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    border-radius: 8px;
+    background-color: #fff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    gap: 6px;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+  }
+
+  .prompt-nome input {
+    outline: none;
+    font-size: 20px;
+    border: 1px solid #e02323;
+    width: 100%;
+    border-radius: 4px;
+  }
+
+  .prompt-nome button {
+    width: 100%;
+    border-radius: 4px;
+    font-size: 20px;
+    font-family: "Courier New", Courier, monospace;
+  }
+
+  .my-card-element {
+    display: flex;
+    width: 130px;
+    height: 250px;
+    border-radius: 20px;
+    border: 3px solid #000;
+    background-size: cover;
+    background-image: center;
+    background-position: center;
+  }
+
+  .my-card-element h3 {
+    color: #fff;
+  }
+
+  .footer {
+    position: fixed;
+    bottom: 0;
+    height: 25px;
+    width: 100%;
+    background-color: #ffffff3e;
+    border-top: 1px solid #000;
   }
 }
 
-@media only screen and (min-width: 600px) {
+@media (min-width: 600px) {
   body {
     background-color: lightblue;
+    background-image: url("images/table.png");
+    background-position: center;
+    background-size: cover;
   }
-}
 
-@media only screen and (min-width: 600px) {
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: "Roboto", sans-serif;
+  .game-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    position: relative;
+    padding: 5%;
+    background-position: center;
+    background-size: cover;
   }
-}
 
-.game-container {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-flow: row;
-  justify-content: center;
-  position: relative;
-  padding: 5%;
-  background-image: url("images/tablee.png");
-  background-position: center;
-  background-size: cover;
-}
-
-.game-field {
-  display: flex;
-  justify-content: right;
-}
-
-.area-button {
-  display: flex;
-  flex-flow: column;
-  padding: 5%;
-  gap: 20px;
-}
-
-.area-button div {
-  background-color: rgba(0, 128, 0, 0.537);
-  background-size: 40px;
-}
-
-.ultima-carta {
-  width: 240px;
-  height: 370px;
-  background-color: transparent;
-  border: 3px solid #000;
-  background-size: cover;
-  border-radius: 20px;
-  margin: 10px;
-  background-position: center;
-}
-
-.deck {
-  width: 240px;
-  height: 370px;
-  position: relative;
-  background-size: cover;
-  margin: 10px;
-  background-position: center;
-}
-
-.deck div {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 240px;
-  height: 380px;
-  border-radius: 20px;
-  background-image: url(images/back.png);
-  background-size: cover;
-  border: 3px solid #000;
-}
-
-.deck .card-decoratore-2 {
-  top: -4px;
-  left: -4px;
-}
-
-.deck .card-decoratore-3 {
-  top: -8px;
-  left: -8px;
-}
-
-.my-cards-container {
-  background-color: transparent;
-  background-size: cover;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 35%;
-  display: flex;
-  gap: 2px;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 30px;
-}
-
-.black-overlay {
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  background-color: #00000078;
-  z-index: 10;
-}
-
-.prompt-nome {
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  align-items: center;
-  padding: 16px;
-  border-radius: 8px;
-  background-color: #fff;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 20;
-}
-
-.prompt-nome input {
-  outline: none;
-  border: 1px solid #e02323;
-  width: 100%;
-}
-
-.prompt-nome button {
-  width: 100%;
-}
-
-.my-card-element {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-position: center;
-  width: 240px;
-  height: 370px;
-  border-radius: 12px;
-  background-size: cover;
-  border: 3px solid #000;
-  border-radius: 20px;
-}
-
-.my-card-element h3 {
-  color: #fff;
-}
-
-@media only screen and (max-width: 600px) {
-  body {
-    background-color: lightblue;
+  .game-field {
+    display: flex;
+    justify-content: right;
   }
-}
 
-@media only screen and (min-width: 600px) {
-  body {
-    background-color: lightblue;
+  .area-button {
+    display: flex;
+    flex-flow: column;
+    padding: 100px;
+    gap: 30px;
+    size: 10%;
+    align-items: center;
+  }
+
+  .area-button button {
+    height: 50px;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: large;
+    background-color: rgb(3, 123, 83);
+  }
+
+  .ultima-carta {
+    width: 240px;
+    height: 370px;
+    background-color: transparent;
+    border: 3px solid #000;
+    background-size: cover;
+    border-radius: 20px;
+    margin: 10px;
+    background-position: center;
+  }
+
+  .deck {
+    width: 240px;
+    height: 370px;
+    position: relative;
+    background-size: cover;
+    margin: 10px;
+    background-position: center;
+  }
+
+  .deck div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 240px;
+    height: 380px;
+    border-radius: 20px;
+    background-image: url(images/back.png);
+    background-size: cover;
+    border: 3px solid #000;
+  }
+
+  .deck .card-decoratore-2 {
+    top: -4px;
+    left: -4px;
+  }
+
+  .deck .card-decoratore-3 {
+    top: -8px;
+    left: -8px;
+  }
+
+  .my-cards-container {
+    background-color: transparent;
+    background-size: cover;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin-bottom: 30px;
+  }
+
+  .black-overlay {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background-color: #00000078;
+    z-index: 1;
+  }
+
+  .prompt-nome {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    border-radius: 8px;
+    background-color: #fff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    gap: 6px;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+  }
+
+  .prompt-nome input {
+    outline: none;
+    font-size: 20px;
+    border: 1px solid #e02323;
+    width: 100%;
+    border-radius: 4px;
+  }
+
+  .prompt-nome button {
+    width: 100%;
+    border-radius: 4px;
+    font-size: 20px;
+    font-family: "Courier New", Courier, monospace;
+  }
+
+  .my-card-element {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-position: center;
+    width: 240px;
+    height: 370px;
+    border-radius: 12px;
+    background-size: cover;
+    border: 3px solid #000;
+    border-radius: 20px;
+  }
+
+  .my-card-element h3 {
+    color: #fff;
+  }
+
+  @media only screen and (max-width: 600px) {
+    body {
+      background-color: lightblue;
+    }
+  }
+
+  @media only screen and (min-width: 600px) {
+    body {
+      background-color: lightblue;
+    }
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 0;
+    height: 25px;
+    width: 100%;
+    background-color: #ffffff3e;
+    border-top: 1px solid #000;
   }
 }
