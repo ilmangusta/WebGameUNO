@@ -4,7 +4,7 @@ class Deck {
   deck2 = [];
   constructor() {
     this.deck = [
-      [0, "R", "cardsimages/1r.png"],
+      [0, "R", "cardsimages/0r.png"],
       [1, "R", "cardsimages/1r.png"],
       [2, "R", "cardsimages/1r.png"],
       [3, "R", "cardsimages/1r.png"],
