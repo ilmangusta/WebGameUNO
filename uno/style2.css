@@ -236,19 +236,18 @@
   }
 
   .ultima-carta {
-    background-size: cover;
     background-position: center;
   }
 
   .ultima-carta img {
-    width: 230px;
+    width: 160px;
     border: 3px solid #000;
     border-radius: 20px;
   }
 
   .deck {
     width: 240px;
-    height: 330px;
+    height: 200px;
     position: relative;
   }
 
@@ -258,7 +257,7 @@
   }
 
   .deck img {
-    width: 220px;
+    width: 160px;
     border: 3px solid #000;
     border-radius: 20px;
   }
@@ -274,16 +273,15 @@
   }
 
   .my-cards-container {
-    background-color: transparent;
-    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     bottom: 0;
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: start;
     padding-bottom: 0px;
     margin-bottom: 60px;
+    gap: 5px;
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
   }
@@ -339,7 +337,7 @@
   }
 
   .my-card-element img {
-    width: 180px;
+    width: 170px;
     border: 3px solid #000;
     border-radius: 20px;
   }

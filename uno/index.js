@@ -1,191 +1,32 @@
-class Deck {
-  //class definition for our deck game including total of 108 cards, 25 for each color and 8 special cards.
-  deck = [];
-  deck2 = [];
-  constructor() {
-    this.deck = [
-      [0, "R", "cardsimages/0r.png"],
-      [1, "R", "cardsimages/1r.png"],
-      [2, "R", "cardsimages/2r.png"],
-      [3, "R", "cardsimages/3r.png"],
-      [4, "R", "cardsimages/1r.png"],
-      [5, "R", "cardsimages/1r.png"],
-      [6, "R", "cardsimages/1r.png"],
-      [7, "R", "cardsimages/1r.png"],
-      [8, "R", "cardsimages/1r.png"],
-      [9, "R", "cardsimages/1r.png"],
-      ["STOP", "R", "cardsimages/1r.png"],
-      ["STOP", "R", "cardsimages/1r.png"],
-      ["SWITCH", "R", "cardsimages/1r.png"],
-      ["SWITCH", "R", "cardsimages/1r.png"],
-      ["+2CARDS", "R", "cardsimages/1r.png"],
-      ["+2CARDS", "R", "cardsimages/1r.png"],
-      [0, "Y", "cardsimages/1r.png"],
-      [1, "Y", "cardsimages/1r.png"],
-      [2, "Y", "cardsimages/1r.png"],
-      [3, "Y", "cardsimages/1r.png"],
-      [4, "Y", "cardsimages/1r.png"],
-      [5, "Y", "cardsimages/1r.png"],
-      [6, "Y", "cardsimages/1r.png"],
-      [7, "Y", "cardsimages/1r.png"],
-      [8, "Y", "cardsimages/1r.png"],
-      [9, "Y", "cardsimages/1r.png"],
-      ["STOP", "Y", "cardsimages/1r.png"],
-      ["STOP", "Y", "cardsimages/1r.png"],
-      ["SWITCH", "Y", "cardsimages/1r.png"],
-      ["SWITCH", "Y", "cardsimages/1r.png"],
-      ["+2CARDS", "Y", "cardsimages/1r.png"],
-      ["+2CARDS", "Y", "cardsimages/1r.png"],
-      [0, "G", "cardsimages/1r.png"],
-      [1, "G", "cardsimages/1r.png"],
-      [2, "G", "cardsimages/1r.png"],
-      [3, "G", "cardsimages/1r.png"],
-      [4, "G", "cardsimages/1r.png"],
-      [5, "G", "cardsimages/1r.png"],
-      [6, "G", "cardsimages/1r.png"],
-      [7, "G", "cardsimages/1r.png"],
-      [8, "G", "cardsimages/1r.png"],
-      [9, "G", "cardsimages/1r.png"],
-      ["STOP", "G", "cardsimages/1r.png"],
-      ["STOP", "G", "cardsimages/1r.png"],
-      ["SWITCH", "G", "cardsimages/1r.png"],
-      ["SWITCH", "G", "cardsimages/1r.png"],
-      ["+2CARDS", "G", "cardsimages/1r.png"],
-      ["+2CARDS", "G", "cardsimages/1r.png"],
-      [0, "B", "cardsimages/1r.png"],
-      [1, "B", "cardsimages/1r.png"],
-      [2, "B", "cardsimages/1r.png"],
-      [3, "B", "cardsimages/1r.png"],
-      [4, "B", "cardsimages/1r.png"],
-      [5, "B", "cardsimages/1r.png"],
-      [6, "B", "cardsimages/1r.png"],
-      [7, "B", "cardsimages/1r.png"],
-      [8, "B", "cardsimages/1r.png"],
-      [9, "B", "cardsimages/1r.png"],
-      ["STOP", "B", "cardsimages/1r.png"],
-      ["STOP", "B", "cardsimages/1r.png"],
-      ["SWITCH", "B", "cardsimages/1r.png"],
-      ["SWITCH", "B", "cardsimages/1r.png"],
-      ["+2CARDS", "B", "cardsimages/1r.png"],
-      ["+2CARDS", "B", "cardsimages/1r.png"],
-      ["CHANGE", "SPECIAL", "cardsimages/1r.png"],
-      ["CHANGE", "SPECIAL", "cardsimages/1r.png"],
-      ["CHANGE", "SPECIAL", "cardsimages/1r.png"],
-      ["CHANGE", "SPECIAL", "cardsimages/1r.png"],
-      ["+4CARDS", "SPECIAL", "cardsimages/1r.png"],
-      ["+4CARDS", "SPECIAL", "cardsimages/1r.png"],
-      ["+4CARDS", "SPECIAL", "cardsimages/1r.png"],
-      ["+4CARDS", "SPECIAL", "cardsimages/1r.png"],
-    ];
-    this.deck2 = [
-      [0, "R"],
-      [1, "R"],
-      [2, "R"],
-      [3, "R"],
-      [4, "R"],
-      [5, "R"],
-      [6, "R"],
-      [7, "R"],
-      [8, "R"],
-      [9, "R"],
-      ["STOP", "R"],
-      ["STOP", "R"],
-      ["SWITCH", "R"],
-      ["SWITCH", "R"],
-      ["+2CARDS", "R"],
-      ["+2CARDS", "R"],
-      [0, "Y"],
-      [1, "Y"],
-      [2, "Y"],
-      ["STOP", "Y"],
-      ["STOP", "Y"],
-      ["SWITCH", "Y"],
-      ["SWITCH", "Y"],
-      ["+2CARDS", "Y"],
-      ["+2CARDS", "Y"],
-      [0, "G"],
-      [1, "G"],
-      [2, "G"],
-      [3, "G"],
-      [4, "G"],
-      [5, "G"],
-      [6, "G"],
-      [7, "G"],
-      [8, "G"],
-      [9, "G"],
-      ["STOP", "G"],
-      ["STOP", "G"],
-      ["SWITCH", "G"],
-      ["SWITCH", "G"],
-      ["+2CARDS", "G"],
-      ["+2CARDS", "G"],
-      [0, "B"],
-      [1, "B"],
-      [2, "B"],
-      [3, "B"],
-      [4, "B"],
-      [5, "B"],
-      [6, "B"],
-      [7, "B"],
-      [8, "B"],
-      [9, "B"],
-      ["STOP", "B"],
-      ["STOP", "B"],
-      ["SWITCH", "B"],
-      ["SWITCH", "B"],
-      ["+2CARDS", "B"],
-      ["+2CARDS", "B"],
-      ["CHANGE", "SPECIAL"],
-      ["CHANGE", "SPECIAL"],
-      ["CHANGE", "SPECIAL"],
-      ["CHANGE", "SPECIAL"],
-      ["+4CARDS", "SPECIAL"],
-      ["+4CARDS", "SPECIAL"],
-      ["+4CARDS", "SPECIAL"],
-      ["+4CARDS", "SPECIAL"],
-    ];
-  }
-  randomize() {
-    //method to shuffle the deck at the start of game.
-    this.deck.sort(() => (Math.random() > 0.5 ? 1 : -1));
-    return;
-  }
-}
+import { field } from "./field.js";
+import { cpu } from "./cpu.js";
+import { Deck } from "./deck.js";
+import { Player } from "./player.js";
 
-d = new Deck();
-deck = d.deck;
+var myHand = [];
+
+let deck = new Deck();
+deck.randomize();
+deck = deck.cards;
+console.log(deck);
+
+const enemy = new cpu();
+enemy.newHand(deck); //Avversario ha le carte
+
+const f = new field();
+f.newField(deck);
+
+const p = new Player();
+p.newHand(deck);
 //deck.randomize();
-console.log(deck[1]);
+//player = new player();
 
-function createField(deck) {
+function createField() {
   const cardContainer = document.querySelector(".ultima-carta");
-
   const image = document.createElement("img");
-  carta = deck.shift();
-  image.src = carta[2];
+  image.src = f.card[2];
   cardContainer.prepend(image);
-  //carta=estraiCarta();
 }
-
-/*
-function setButtonRestart(deck) {
-  const gamecontainer = document.querySelector("body");
-  const btndiv = document.createElement("div");
-  btndiv.classList.add("restart");
-  const btn = document.createElement("button");
-
-  btn.textContent = "Inizia nuova partita";
-  btn.addEventListener(
-    "click",
-    () => {
-      window.location = "http://127.0.0.1:5500/uno/index.html";
-    },
-    true
-  );
-  btndiv.append(btn);
-  //gamecontainer.prepend(btndiv);
-  gamecontainer.prepend(btndiv);
-}*/
 
 function StartNewGame(deck) {
   const body = document.querySelector("body");
@@ -211,13 +52,22 @@ function StartNewGame(deck) {
   );
   modale.append(btn);
   body.prepend(modale);
+
+  const deckcontainer = document.querySelector(".deck");
+  deckcontainer.addEventListener(
+    "click",
+    () => {
+      PescaLeCarte(1, deck);
+    },
+    true
+  );
 }
 
-myHand = [];
 createField(deck);
 StartNewGame(deck);
 
 function PescaLeCarte(n, deck) {
+  var card;
   for (var i = 0; i < n; i++) {
     card = deck.shift();
     myHand.push(card);
@@ -227,28 +77,49 @@ function PescaLeCarte(n, deck) {
 
 function usaCarta(e) {
   const index = e.target.closest("div").getAttribute("data-number");
+  console.log(index, myHand[index]);
+  //myhand[idx] carta da usare
+  if (checkMove(myHand[index])) {
+    p.move(myHand[index], f, deck, enemy);
+  } else {
+    //azione non consentita
+    //non rimuovere carta
+    return;
+  }
 
-  console.log(myHand, index, myHand[index]);
   const cardContainer = document.querySelector(".ultima-carta");
   cardContainer.innerHTML = "";
 
   const image = document.createElement("img");
   image.src = myHand[index][2];
   cardContainer.prepend(image);
-
+  f.card = myHand[index];
   myHand.splice(index, 1);
+}
+
+function checkMove(card) {
+  if (
+    card[0] == field[0] ||
+    card[1] == field[1] ||
+    card[0] == "+4CARDS" ||
+    card[0] == "CHANGE"
+  ) {
+    return true;
+  } else {
+    console.log("carta non giusta: " + f.card);
+    return false;
+  }
 }
 
 function viewMano() {
   const myCardContainer = document.querySelector(".my-cards-container");
   myCardContainer.innerHTML = "";
   for (var i = 0; i < myHand.length; i++) {
-    card = myHand[i];
     const cardContainer = document.createElement("div");
     cardContainer.classList.add("my-card-element");
     cardContainer.setAttribute("data-number", i);
     const image = document.createElement("img");
-    image.src = card[2];
+    image.src = myHand[i][2];
     cardContainer.prepend(image);
 
     myCardContainer.prepend(cardContainer);
