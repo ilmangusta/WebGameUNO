@@ -39,7 +39,7 @@
 
   .cards {
     display: flex;
-    height: 200px;
+    gap: 10px;
   }
 
   .area-button {
@@ -109,7 +109,8 @@
 
   .deck img {
     background-color: transparent;
-    width: 100px;
+    width: 105px;
+    height: 155px;
     border: 3px solid #000;
     border-radius: 20px;
   }
@@ -276,6 +277,7 @@
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS";
     background-color: rgba(197, 200, 7, 0.277);
     color: black;
+    border: 2.2px solid black;
   }
 
   .buttonleft2 button {
@@ -290,10 +292,8 @@
     font-size: 150%;
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS";
     background-color: rgba(197, 200, 7, 0.277);
-  }
-
-  .cards {
-    display: flex;
+    color: black;
+    border: 2.2px solid black;
   }
 
   .skip {
@@ -312,6 +312,8 @@
     background-color: rgba(197, 200, 7, 0.277);
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
       sans-serif;
+    color: black;
+    border: 2.2px solid black;
   }
 
   .ultima-carta {
@@ -324,9 +326,14 @@
     border-radius: 20px;
   }
 
+  .cards {
+    display: flex;
+    gap: 20px;
+  }
+
   .deck {
     width: 180px;
-    height: 200px;
+    height: 250px;
     position: relative;
   }
 
@@ -335,7 +342,8 @@
   }
 
   .deck img {
-    width: 160px;
+    width: 170px;
+    height: 250px;
     border: 3px solid #000;
     border-radius: 20px;
   }
