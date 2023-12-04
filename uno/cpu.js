@@ -39,8 +39,11 @@ export class cpu {
     for (var i = 0; i < this.hand.length; i++) {
       if (this.hand[i][0] == "+4CARDS") {
         p.draw(4, deck);
-        console.log("Enemy used " + this.hand[i]);
-        console.log("You draw 4 cards and enemy choose the color!");
+        alert(
+          "Enemy used " +
+            this.hand[i] +
+            ". You draw 4 cards and enemy choose the color!"
+        );
         f.color = this.randomColor();
         f.number = -1;
         console.log("Enemy choose " + f.color);
@@ -49,8 +52,7 @@ export class cpu {
         return "GO";
       }
       if (this.hand[i][0] == "CHANGE") {
-        console.log("Enemy used " + this.hand[i]);
-        console.log("Enemey choose the color!");
+        alert("Enemy used " + this.hand[i] + ". Enemy choose the color!");
         f.color = this.randomColor();
         f.number = -1;
         console.log("Enemy choose " + f.color);
@@ -63,8 +65,7 @@ export class cpu {
         (this.hand[i][1] == f.color || this.hand[i][0] == f.number)
       ) {
         p.draw(2, deck);
-        console.log("Enemy used " + this.hand[i]);
-        console.log("You draw 2 cards!");
+        alert("Enemy used " + this.hand[i] + ". You draw 2 cards!");
         f.color = this.hand[i][1];
         f.number = this.hand[i][0];
         this.UpdateField(this.hand[i], f);
@@ -75,8 +76,7 @@ export class cpu {
         this.hand[i][0] == "STOP" &&
         (this.hand[i][1] == f.color || this.hand[i][0] == f.number)
       ) {
-        console.log("Enemy used " + this.hand[i]);
-        console.log("You skip one turn!");
+        alert("Enemy used " + this.hand[i] + ". You skip one turn!");
         f.number = this.hand[i][0];
         f.color = this.hand[i][1];
         this.UpdateField(this.hand[i], f);
@@ -87,8 +87,11 @@ export class cpu {
         this.hand[i][0] == "SWITCH" &&
         (this.hand[i][1] == f.color || this.hand[i][0] == f.number)
       ) {
-        console.log("Enemy used " + this.hand[i]);
-        console.log("The enemy changed the spin! You skip one turn!");
+        alert(
+          "Enemy used " +
+            this.hand[i] +
+            ". The enemy changed the spin! You skip one turn!"
+        );
         f.color = this.hand[i][1];
         f.number = this.hand[i][0];
         this.UpdateField(this.hand[i], f);
@@ -98,14 +101,14 @@ export class cpu {
       if (this.hand[i][0] == f.number || this.hand[i][1] == f.color) {
         f.number = this.hand[i][0];
         f.color = this.hand[i][1];
-        console.log("Enemy used " + this.hand[i]);
+        alert("Enemy used " + this.hand[i]);
         this.UpdateField(this.hand[i], f);
         this.discard(deck, i);
         return "GO";
       }
     }
     this.draw(1, deck);
-    console.log(
+    alert(
       "The enemy draw one card and have " +
         this.hand.length +
         " cards! Your turn!"
@@ -139,12 +142,12 @@ export class cpu {
         return;
       } else {
         //victory of cpu 0 cards left
-        console.log("THE ENEMY WIN, YOU LOSE. TRY AGAIN");
+        alert("THE ENEMY WIN, YOU LOSE. SCEMO TRY AGAIN");
       }
     }
     this.hand.splice(i, 1);
     if (this.hand.length == 1) {
-      console.log("THE ENEMY HAS ONE CARD LEFT!!");
+      alert("THE ENEMY HAS ONE CARD LEFT!! DIAMO EEEHHHHH");
     } else console.log("The enemy still has " + this.hand.length + " cards!");
   }
 }

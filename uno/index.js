@@ -143,7 +143,7 @@ function UNOgame() {
         return finishGame();
       } else console.log("Deck still have " + deck.length + " cards!"); //checking how many cards are left
       return move_cpu;
-    }, 900);
+    }, 780);
   }
 
   function ViewHand() {
