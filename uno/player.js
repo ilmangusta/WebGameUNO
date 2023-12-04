@@ -15,65 +15,55 @@ export class Player {
     this.draw(7, deck);
   }
 
-  move(card, i, f, deck, cpu) {
+  move(card, f, deck, cpu) {
+    const cardContainer = document.querySelector(".ultima-carta");
+    cardContainer.innerHTML = "";
+    console.log("carta: " + card);
+    const image = document.createElement("img");
+    image.src = card[2];
+    cardContainer.prepend(image);
+    f.card = card;
+    f.color = card[1];
+    f.number = card[0];
+
     if (card[0] == "SKIP") {
       this.draw(1, deck);
       console.log("You drew one card and skipped the turn!");
       return "GO";
-    }
-    if (card[0] == "+4CARDS") {
+    } else if (card[0] == "+4CARDS") {
       var color = prompt(
         "Enemy draw 4 cards and you choose the color!\nBLUE - GREEN - RED - YELLOW"
       );
       f.color = color;
       f.number = -1;
-      f.card = card;
       cpu.draw(4, deck);
-      this.discard(card, i);
       return "GO";
-    }
-    if (card[0] == "CHANGE") {
+    } else if (card[0] == "CHANGE") {
       var color = prompt("Choose the color!\nBLUE - GREEN - RED - YELLOW");
       f.color = color;
       f.number = -1;
-      f.card = card;
-      this.discard(card, i);
       return "GO";
-    }
-    if (card[0] == "+2CARDS") {
-      cpu.draw(2, deck);
+    } else if (card[0] == "+2CARDS") {
       console.log("Enemy draw 2 cards!");
       f.number = card[0];
       f.color = card[1];
-      f.card = card;
-      this.discard(card, i);
+      cpu.draw(2, deck);
       return "GO";
-    }
-    if (card[0] == "STOP") {
+    } else if (card[0] == "STOP") {
       console.log("Enemy skip one turn!");
       f.color = card[1];
       f.number = card[0];
-      f.card = card;
-      this.discard(card, i);
       return "SKIP";
-    }
-    if (card[0] == "SWITCH") {
+    } else if (card[0] == "SWITCH") {
       console.log("Change Spin! Enemy skip one turn!");
       f.color = card[1];
       f.number = card[0];
-      f.card = card;
-      this.discard(card, i);
       return "SKIP";
     }
-    f.color = card[1];
-    f.number = card[0];
-    f.card = card;
-    this.discard(card, i);
     return "GO";
   }
 
-  discard(card, i) {
-    var swap;
+  discard(card, i, deck) {
     if (this.hand.length == 1) {
       if (
         this.hand[0][1] == "SPECIAL" ||
@@ -81,7 +71,7 @@ export class Player {
         this.hand[0][0] == "SWITCH" ||
         this.hand[0][0] == "STOP"
       ) {
-        this.hand = [];
+        this.hand.splice(i, 1);
         this.draw(1, deck);
         console.log(
           "You can not finish the game with Not number card!! Draw new card!"
@@ -89,12 +79,12 @@ export class Player {
         console.log("You yell `UNO`");
         return;
       }
-    }
-
-    this.hand.splice(i, 1);
-    console.log("You still have " + this.hand.length + " cards!");
-    if (this.hand.length == 1) {
-      console.log("YOU YELL `UNO`!!");
+    } else {
+      this.hand.splice(i, 1);
+      console.log("You still have " + this.hand.length + " cards!");
+      if (this.hand.length == 1) {
+        console.log("YOU YELL `UNO`!!");
+      }
     }
   }
 }

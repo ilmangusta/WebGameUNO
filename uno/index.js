@@ -14,25 +14,19 @@ function UNOgame() {
   deck = deck.cards;
   console.log(deck);
 
-  const enemy = new cpu();
+  let enemy = new cpu();
   enemy.newHand(deck); //Avversario ha le carte
 
-  const f = new field();
+  let f = new field();
   f.newField(deck);
 
-  const p = new Player();
+  let p = new Player();
   p.newHand(deck);
-  var myHand = p.hand;
-  //deck.randomize();
-  //player = new player();
+  console.log(p.hand);
 
   //2. inizio la routine del gioco
   createField(f);
-  StartNewGame(deck, myHand);
-
-  function sleep(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  }
+  StartNewGame();
 
   function createField(f) {
     const cardContainer = document.querySelector(".ultima-carta");
@@ -41,7 +35,7 @@ function UNOgame() {
     cardContainer.prepend(image);
   }
 
-  function StartNewGame(deck, myHand) {
+  function StartNewGame() {
     const body = document.querySelector("body");
 
     const overlay = document.createElement("div");
@@ -57,7 +51,7 @@ function UNOgame() {
     btn.addEventListener(
       "click",
       () => {
-        DrawCards(8, deck, myHand);
+        ViewHand();
         modale.remove();
         overlay.remove();
       },
@@ -70,54 +64,58 @@ function UNOgame() {
     deckcontainer.addEventListener(
       "click",
       () => {
-        DrawCards(1, deck, myHand);
+        DrawCard(1);
+        cpuTurn();
+      },
+      true
+    );
+
+    const skipbutton = document.querySelector(".skipbutton");
+    skipbutton.addEventListener(
+      "click",
+      () => {
+        console.log("salto turno");
+        cpuTurn();
       },
       true
     );
   }
 
-  function DrawCards(n, deck, myHand) {
-    for (var i = 0; i < n; i++) {
-      myHand.push(deck.shift());
-    }
+  function DrawCard(i) {
+    p.draw(1, deck);
     ViewHand();
   }
 
   function finishGame() {
     return;
   }
+
   function UseCard(e) {
     const index = e.target.closest("div").getAttribute("data-number");
     var move_player;
-    //myhand[idx] carta da usare
-    if (checkMove(myHand[index])) {
-      move_player = p.move(myHand[index], index, f, deck, enemy);
+    var card = p.hand[index];
+    console.log(card);
+    if (checkMove(card)) {
+      //scelta carta ok
+      move_player = p.move(card, f, deck, enemy);
+      p.discard(card, index, deck);
+      if (p.hand.length == 0) {
+        return finishGame();
+      }
+      if (move_player == "GO") {
+        console.log("Turno avversario");
+        cpuTurn();
+      } else {
+        console.log("Avversario salta turno");
+      }
     } else {
-      //azione non consentita
-      //non rimuovere carta
+      //azione non consentita nnon rimuovere carta
+      console.log("carta non giusta. Campo è:" + f.card);
       return;
     }
-    const cardContainer = document.querySelector(".ultima-carta");
-    cardContainer.innerHTML = "";
-
-    const image = document.createElement("img");
-    image.src = myHand[index][2];
-    cardContainer.prepend(image);
-    f.card = myHand[index];
-    myHand.splice(index, 1);
-    //mossa giocatore
-    sleep(1500);
-    if (move_player != "SKIP") {
-      console.log("Turno avversario");
-      cpuTurn();
-    } else {
-      console.log("Avversario salta turno");
-    }
-    //player stop or switch cpu
   }
 
   function checkMove(card) {
-    console.log(card, f);
     if (
       card[0] == f.number ||
       card[1] == f.color ||
@@ -126,40 +124,37 @@ function UNOgame() {
     ) {
       return true;
     } else {
-      console.log("carta non giusta. Campo è:" + f.card);
       return false;
     }
   }
 
   function cpuTurn() {
-    var move_cpu = enemy.move(p, f, deck); //cpu moving
-    ViewHand();
-
-    if (move_cpu == "STOP") {
-      //cpu stop  or switch
-      while (move_cpu != "GO") {
-        move_cpu = enemy.move(p, f, deck); //cpu moving again cause used STOP or SWITCH card
-        ViewHand();
-      }
+    var turnEnemy = "SKIP";
+    while (turnEnemy == "SKIP") {
+      turnEnemy = cpuMove();
     }
+  }
 
-    if (enemy.hand.length == 0) {
-      //victory of cpu 0 cards left
-      console.log("THE ENEMY WIN, YOU LOSE. TRY AGAIN");
-      return finishGame();
-    }
-    console.log("Deck still have " + deck.length + " cards!"); //checking how many cards are left
+  function cpuMove() {
+    setTimeout(() => {
+      var move_cpu = enemy.move(p, f, deck); //cpu moving
+      ViewHand();
+      if (enemy.hand.length == 0) {
+        return finishGame();
+      } else console.log("Deck still have " + deck.length + " cards!"); //checking how many cards are left
+      return move_cpu;
+    }, 900);
   }
 
   function ViewHand() {
     const myCardContainer = document.querySelector(".my-cards-container");
     myCardContainer.innerHTML = "";
-    for (var i = 0; i < myHand.length; i++) {
+    for (var i = 0; i < p.hand.length; i++) {
       const cardContainer = document.createElement("div");
       cardContainer.classList.add("my-card-element");
       cardContainer.setAttribute("data-number", i);
       const image = document.createElement("img");
-      image.src = myHand[i][2];
+      image.src = p.hand[i][2];
       cardContainer.prepend(image);
 
       myCardContainer.prepend(cardContainer);
@@ -173,26 +168,6 @@ function UNOgame() {
       );
     }
   }
-
-  /*
-  while (deck.length != 0) {
-    //main function
-    console.log("Your actual hand is:\n");
-    console.log(myHand);
-    console.log("Choose a card or draw a card and skip the turn!");
-
-    //mossa giocatore
-    if (move_player == "SKIP") {
-      continue;
-    } //player stop or switch cpu
-
-    if (p.hand.length == 0) {
-      //victory of player with 0 cards left
-      console.log("YOU WIN, CONGRATULATIONS!");
-      break;
-    }
-  }
-  */
 }
 
 UNOgame();

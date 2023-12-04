@@ -3,11 +3,6 @@ export class field {
   number = null;
   color = null;
   card = null;
-  constructor() {
-    //[number,color] -> color
-    this.number;
-    this.color;
-  }
 
   view() {
     console.log("The actual field is:\n" + this.number + "  " + this.color);

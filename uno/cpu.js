@@ -1,5 +1,6 @@
 export class cpu {
   //class definition for all cpu actions.
+  hand = [];
   constructor() {
     this.hand = [];
   }
@@ -40,7 +41,7 @@ export class cpu {
         p.draw(4, deck);
         console.log("Enemy used " + this.hand[i]);
         console.log("You draw 4 cards and enemy choose the color!");
-        f.color = randomColor();
+        f.color = this.randomColor();
         f.number = -1;
         console.log("Enemy choose " + f.color);
         this.UpdateField(this.hand[i], f);
@@ -50,7 +51,7 @@ export class cpu {
       if (this.hand[i][0] == "CHANGE") {
         console.log("Enemy used " + this.hand[i]);
         console.log("Enemey choose the color!");
-        f.color = randomColor();
+        f.color = this.randomColor();
         f.number = -1;
         console.log("Enemy choose " + f.color);
         this.UpdateField(this.hand[i], f);
@@ -103,7 +104,6 @@ export class cpu {
         return "GO";
       }
     }
-
     this.draw(1, deck);
     console.log(
       "The enemy draw one card and have " +
@@ -124,27 +124,27 @@ export class cpu {
 
   discard(deck, i) {
     if (this.hand.length == 1) {
+      this.hand = [];
       if (
         this.hand[0][1] == "SPECIAL" ||
         this.hand[0][0] == "+2CARDS" ||
         this.hand[0][0] == "SWITCH" ||
         this.hand[0][0] == "STOP"
       ) {
-        this.hand = [];
         this.draw(1, deck);
         console.log(
           "You can not finish the game with Not number card!! Draw new card!"
         );
         console.log("Enemy yells `UNO`");
         return;
+      } else {
+        //victory of cpu 0 cards left
+        console.log("THE ENEMY WIN, YOU LOSE. TRY AGAIN");
       }
     }
     this.hand.splice(i, 1);
-    //console.log("Enemy hand: ");
-    console.log("The enemy still has " + this.hand.length + " cards!");
     if (this.hand.length == 1) {
       console.log("THE ENEMY HAS ONE CARD LEFT!!");
-    }
-    return;
+    } else console.log("The enemy still has " + this.hand.length + " cards!");
   }
 }
