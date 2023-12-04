@@ -157,14 +157,10 @@
     background-position: center;
   }
 
-  .my-card-element h3 {
-    color: #fff;
-  }
-
   .my-card-element img {
-    width: 90px;
+    width: 80px;
     border: 3px solid #000;
-    border-radius: 20px;
+    border-radius: 18px;
   }
 
   .footer {
@@ -274,12 +270,10 @@
 
   .my-cards-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
     position: absolute;
     bottom: 0;
     width: 100%;
-    padding-bottom: 0px;
+    padding-bottom: 30px;
     margin-bottom: 60px;
     gap: 5px;
     overflow-x: scroll;
@@ -329,15 +323,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-position: center;
-  }
-
-  .my-card-element h3 {
-    color: #fff;
   }
 
   .my-card-element img {
-    width: 170px;
+    width: 160px;
     border: 3px solid #000;
     border-radius: 20px;
   }

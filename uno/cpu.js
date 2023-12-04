@@ -16,6 +16,23 @@ export class cpu {
     this.draw(7, deck);
   }
 
+  randomColor() {
+    //function to help to random color for cpu when using +4 or CHANGE color card
+    var number = Math.floor(Math.random() * 4);
+    if (number == 0) {
+      return "RED";
+    }
+    if (number == 1) {
+      return "BLUE";
+    }
+    if (number == 2) {
+      return "GREEN";
+    }
+    if (number == 3) {
+      return "YELLOW";
+    }
+  }
+
   move(p, f, deck) {
     var card;
     for (var i = 0; i < this.hand.length; i++) {
@@ -26,6 +43,7 @@ export class cpu {
         f.color = randomColor();
         f.number = -1;
         console.log("Enemy choose " + f.color);
+        this.UpdateField(this.hand[i], f);
         this.discard(deck, i);
         return "GO";
       }
@@ -35,47 +53,52 @@ export class cpu {
         f.color = randomColor();
         f.number = -1;
         console.log("Enemy choose " + f.color);
+        this.UpdateField(this.hand[i], f);
         this.discard(deck, i);
         return "GO";
       }
       if (
         this.hand[i][0] == "+2CARDS" &&
-        (this.hand[i][1] == field.color || this.hand[i][0] == field.number)
+        (this.hand[i][1] == f.color || this.hand[i][0] == f.number)
       ) {
         p.draw(2, deck);
         console.log("Enemy used " + this.hand[i]);
         console.log("You draw 2 cards!");
         f.color = this.hand[i][1];
         f.number = this.hand[i][0];
+        this.UpdateField(this.hand[i], f);
         this.discard(deck, i);
         return "GO";
       }
       if (
         this.hand[i][0] == "STOP" &&
-        (this.hand[i][1] == field.color || this.hand[i][0] == field.number)
+        (this.hand[i][1] == f.color || this.hand[i][0] == f.number)
       ) {
         console.log("Enemy used " + this.hand[i]);
         console.log("You skip one turn!");
         f.number = this.hand[i][0];
         f.color = this.hand[i][1];
+        this.UpdateField(this.hand[i], f);
         this.discard(deck, i);
         return "STOP";
       }
       if (
         this.hand[i][0] == "SWITCH" &&
-        (this.hand[i][1] == field.color || this.hand[i][0] == field.number)
+        (this.hand[i][1] == f.color || this.hand[i][0] == f.number)
       ) {
         console.log("Enemy used " + this.hand[i]);
         console.log("The enemy changed the spin! You skip one turn!");
         f.color = this.hand[i][1];
         f.number = this.hand[i][0];
+        this.UpdateField(this.hand[i], f);
         this.discard(deck, i);
         return "STOP";
       }
-      if (this.hand[i][0] == field.number || this.hand[i][1] == field.color) {
+      if (this.hand[i][0] == f.number || this.hand[i][1] == f.color) {
         f.number = this.hand[i][0];
         f.color = this.hand[i][1];
         console.log("Enemy used " + this.hand[i]);
+        this.UpdateField(this.hand[i], f);
         this.discard(deck, i);
         return "GO";
       }
@@ -88,6 +111,15 @@ export class cpu {
         " cards! Your turn!"
     );
     return "GO";
+  }
+
+  UpdateField(card, f) {
+    const cardContainer = document.querySelector(".ultima-carta");
+    cardContainer.innerHTML = "";
+    const image = document.createElement("img");
+    image.src = card[2];
+    cardContainer.prepend(image);
+    f.card = card;
   }
 
   discard(deck, i) {
