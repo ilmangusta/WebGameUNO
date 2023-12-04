@@ -39,23 +39,19 @@ export class cpu {
     for (var i = 0; i < this.hand.length; i++) {
       if (this.hand[i][0] == "+4CARDS") {
         p.draw(4, deck);
-        alert(
-          "Enemy used " +
-            this.hand[i] +
-            ". You draw 4 cards and enemy choose the color!"
-        );
         f.color = this.randomColor();
         f.number = -1;
-        console.log("Enemy choose " + f.color);
+        alert(
+          "Enemy used +4 Card. You draw 4 cards and enemy choose: " + f.color
+        );
         this.UpdateField(this.hand[i], f);
         this.discard(deck, i);
         return "GO";
       }
       if (this.hand[i][0] == "CHANGE") {
-        alert("Enemy used " + this.hand[i] + ". Enemy choose the color!");
         f.color = this.randomColor();
         f.number = -1;
-        console.log("Enemy choose " + f.color);
+        alert("Enemy used Change Color. Enemy choose: " + f.color);
         this.UpdateField(this.hand[i], f);
         this.discard(deck, i);
         return "GO";
@@ -65,7 +61,7 @@ export class cpu {
         (this.hand[i][1] == f.color || this.hand[i][0] == f.number)
       ) {
         p.draw(2, deck);
-        alert("Enemy used " + this.hand[i] + ". You draw 2 cards!");
+        alert("Enemy used +2 Card. You draw 2 cards!");
         f.color = this.hand[i][1];
         f.number = this.hand[i][0];
         this.UpdateField(this.hand[i], f);
@@ -76,7 +72,7 @@ export class cpu {
         this.hand[i][0] == "STOP" &&
         (this.hand[i][1] == f.color || this.hand[i][0] == f.number)
       ) {
-        alert("Enemy used " + this.hand[i] + ". You skip one turn!");
+        alert("Enemy used Stop Card. You skip one turn!");
         f.number = this.hand[i][0];
         f.color = this.hand[i][1];
         this.UpdateField(this.hand[i], f);
@@ -88,9 +84,7 @@ export class cpu {
         (this.hand[i][1] == f.color || this.hand[i][0] == f.number)
       ) {
         alert(
-          "Enemy used " +
-            this.hand[i] +
-            ". The enemy changed the spin! You skip one turn!"
+          "Enemy used Switch card. The enemy changed the spin! You skip one turn!"
         );
         f.color = this.hand[i][1];
         f.number = this.hand[i][0];
@@ -101,7 +95,6 @@ export class cpu {
       if (this.hand[i][0] == f.number || this.hand[i][1] == f.color) {
         f.number = this.hand[i][0];
         f.color = this.hand[i][1];
-        alert("Enemy used " + this.hand[i]);
         this.UpdateField(this.hand[i], f);
         this.discard(deck, i);
         return "GO";

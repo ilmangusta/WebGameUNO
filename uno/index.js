@@ -35,6 +35,10 @@ function UNOgame() {
     cardContainer.prepend(image);
   }
 
+  setTimeout(() => {
+    alert("Deck still have " + deck.length + " cards!"); //checking how many cards are left
+  }, 2000);
+
   function StartNewGame() {
     const body = document.querySelector("body");
 
