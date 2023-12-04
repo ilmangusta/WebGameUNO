@@ -72,7 +72,6 @@ export class cpu {
         this.hand[i][0] == "STOP" &&
         (this.hand[i][1] == f.color || this.hand[i][0] == f.number)
       ) {
-        alert("Enemy used Stop Card. You skip one turn!");
         f.number = this.hand[i][0];
         f.color = this.hand[i][1];
         this.UpdateField(this.hand[i], f);
@@ -83,9 +82,6 @@ export class cpu {
         this.hand[i][0] == "SWITCH" &&
         (this.hand[i][1] == f.color || this.hand[i][0] == f.number)
       ) {
-        alert(
-          "Enemy used Switch card. The enemy changed the spin! You skip one turn!"
-        );
         f.color = this.hand[i][1];
         f.number = this.hand[i][0];
         this.UpdateField(this.hand[i], f);

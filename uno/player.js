@@ -34,13 +34,13 @@ export class Player {
       var color = prompt(
         "Enemy draw 4 cards and you choose the color!\nBLUE - GREEN - RED - YELLOW"
       );
-      f.color = color;
+      f.color = color.toUpperCase();
       f.number = -1;
       cpu.draw(4, deck);
       return "GO";
     } else if (card[0] == "CHANGE") {
       var color = prompt("Choose the color!\nBLUE - GREEN - RED - YELLOW");
-      f.color = color;
+      f.color = color.toUpperCase();
       f.number = -1;
       return "GO";
     } else if (card[0] == "+2CARDS") {
