@@ -39,6 +39,7 @@
 
   .cards {
     display: flex;
+    height: 200px;
   }
 
   .area-button {
@@ -63,6 +64,8 @@
     font-size: 90%;
     font-family: Arial, Helvetica, sans-serif;
     background-color: rgba(127, 255, 212, 0.283);
+    color: black;
+    border: 1px solid black;
   }
 
   .buttonleft2 button {
@@ -77,6 +80,8 @@
     font-size: 90%;
     font-family: Arial, Helvetica, sans-serif;
     background-color: rgba(127, 255, 212, 0.283);
+    color: black;
+    border: 1px solid black;
   }
 
   .ultima-carta {
@@ -134,6 +139,8 @@
     font-size: 100%;
     font-family: Arial, Helvetica, sans-serif;
     background-color: rgba(127, 255, 212, 0.283);
+    border: 1px solid black;
+    color: black;
   }
 
   .my-cards-container {
@@ -268,6 +275,7 @@
     font-size: 150%;
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS";
     background-color: rgba(197, 200, 7, 0.277);
+    color: black;
   }
 
   .buttonleft2 button {
