@@ -35,7 +35,7 @@
     justify-content: center;
   }
   .unologo img {
-    width: 200px;
+    width: 120px;
   }
 
   .area-button {
@@ -102,7 +102,7 @@
     bottom: 0;
     width: 100%;
     display: flex;
-    margin-bottom: 100px;
+    margin-bottom: 60px;
     padding-bottom: 20px;
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
@@ -195,24 +195,26 @@
 
   .game-field {
     display: flex;
+    flex-flow: row;
     justify-content: center;
     gap: 50px;
   }
 
   .unologo {
     display: flex;
+    flex-flow: column;
     align-items: center;
-    padding-right: 10px;
+    padding: 20px;
   }
   .unologo img {
-    width: 400px;
+    width: 100px;
   }
 
   .area-button {
     display: flex;
     flex-flow: row;
     padding-top: 15px;
-    padding-bottom: 70px;
+    padding-bottom: 10px;
     gap: 30px;
     align-items: center;
     justify-content: center;
@@ -236,7 +238,7 @@
   }
 
   .ultima-carta img {
-    width: 250px;
+    width: 230px;
     border: 3px solid #000;
     border-radius: 20px;
   }
@@ -253,7 +255,7 @@
   }
 
   .deck img {
-    width: 240px;
+    width: 220px;
     border: 3px solid #000;
     border-radius: 20px;
   }
