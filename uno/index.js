@@ -35,10 +35,6 @@ function UNOgame() {
     cardContainer.prepend(image);
   }
 
-  setTimeout(() => {
-    alert("Deck still have " + deck.length + " cards!"); //checking how many cards are left
-  }, 2000);
-
   function StartNewGame() {
     const body = document.querySelector("body");
 
@@ -68,6 +64,7 @@ function UNOgame() {
     deckcontainer.addEventListener(
       "click",
       () => {
+        console.log("pesco carta");
         DrawCard(1);
         cpuTurn();
       },
@@ -91,30 +88,34 @@ function UNOgame() {
   }
 
   function finishGame() {
+    alert("GIOCO FINITO, GIOCARE ANCORA?");
     return;
   }
 
   function UseCard(e) {
     const index = e.target.closest("div").getAttribute("data-number");
-    var move_player;
+    var move_player, res;
     var card = p.hand[index];
     console.log(card);
     if (checkMove(card)) {
       //scelta carta ok
       move_player = p.move(card, f, deck, enemy);
-      p.discard(card, index, deck);
-      if (p.hand.length == 0) {
+      res = p.discard(card, index, deck);
+      if (res == "PLAYERWIN") {
+        alert("HAI VINTO COGLIOOOO");
         return finishGame();
       }
       if (move_player == "GO") {
-        console.log("Turno avversario");
-        cpuTurn();
+        //alert("Turno avversario");
+        setTimeout(() => {
+          cpuTurn();
+        }, 700);
       } else {
         console.log("Avversario salta turno");
       }
     } else {
       //azione non consentita nnon rimuovere carta
-      console.log("carta non giusta. Campo è:" + f.card);
+      alert("carta non giusta. Campo è: " + f.number + " " + f.color);
       return;
     }
   }
@@ -136,18 +137,17 @@ function UNOgame() {
     var turnEnemy = "SKIP";
     while (turnEnemy == "SKIP") {
       turnEnemy = cpuMove();
+      if (turnEnemy == "WINCPU") {
+        return finishGame();
+      }
+      console.log("cputurn: " + turnEnemy);
     }
   }
 
   function cpuMove() {
-    setTimeout(() => {
-      var move_cpu = enemy.move(p, f, deck); //cpu moving
-      ViewHand();
-      if (enemy.hand.length == 0) {
-        return finishGame();
-      } else console.log("Deck still have " + deck.length + " cards!"); //checking how many cards are left
-      return move_cpu;
-    }, 780);
+    var move_cpu = enemy.move(p, f, deck); //cpu moving
+    ViewHand();
+    return move_cpu;
   }
 
   function ViewHand() {

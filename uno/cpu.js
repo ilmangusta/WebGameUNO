@@ -35,65 +35,62 @@ export class cpu {
   }
 
   move(p, f, deck) {
-    var card;
+    var card, res;
     for (var i = 0; i < this.hand.length; i++) {
       if (this.hand[i][0] == "+4CARDS") {
         p.draw(4, deck);
-        f.color = this.randomColor();
-        f.number = -1;
+        this.UpdateField(this.hand[i], f);
         alert(
           "Enemy used +4 Card. You draw 4 cards and enemy choose: " + f.color
         );
-        this.UpdateField(this.hand[i], f);
-        this.discard(deck, i);
-        return "GO";
+        res = this.discard(deck, i);
+        if (res == "WINCPU") return "WINCPU";
+        else return "GO";
       }
       if (this.hand[i][0] == "CHANGE") {
-        f.color = this.randomColor();
-        f.number = -1;
-        alert("Enemy used Change Color. Enemy choose: " + f.color);
         this.UpdateField(this.hand[i], f);
-        this.discard(deck, i);
-        return "GO";
+        alert("Enemy used Change Color. Enemy choose: " + f.color);
+        res = this.discard(deck, i);
+        if (res == "WINCPU") return "WINCPU";
+        else return "GO";
       }
       if (
         this.hand[i][0] == "+2CARDS" &&
         (this.hand[i][1] == f.color || this.hand[i][0] == f.number)
       ) {
         p.draw(2, deck);
-        alert("Enemy used +2 Card. You draw 2 cards!");
-        f.color = this.hand[i][1];
-        f.number = this.hand[i][0];
         this.UpdateField(this.hand[i], f);
-        this.discard(deck, i);
-        return "GO";
+        alert("Enemy used +2 Card " + this.hand[i][1] + ". You draw 2 cards!");
+        res = this.discard(deck, i);
+        if (res == "WINCPU") return "WINCPU";
+        else return "GO";
       }
       if (
         this.hand[i][0] == "STOP" &&
         (this.hand[i][1] == f.color || this.hand[i][0] == f.number)
       ) {
-        f.number = this.hand[i][0];
-        f.color = this.hand[i][1];
         this.UpdateField(this.hand[i], f);
-        this.discard(deck, i);
-        return "STOP";
+        alert("Enemy used STOP " + this.hand[i][1] + "!");
+        res = this.discard(deck, i);
+        if (res == "WINCPU") return "WINCPU";
+        else return "SKIP";
       }
       if (
         this.hand[i][0] == "SWITCH" &&
         (this.hand[i][1] == f.color || this.hand[i][0] == f.number)
       ) {
-        f.color = this.hand[i][1];
-        f.number = this.hand[i][0];
         this.UpdateField(this.hand[i], f);
-        this.discard(deck, i);
-        return "STOP";
+        alert("Enemy used SWITCH " + this.hand[i][1] + "!");
+        res = this.discard(deck, i);
+        if (res == "WINCPU") return "WINCPU";
+        else return "SKIP";
       }
       if (this.hand[i][0] == f.number || this.hand[i][1] == f.color) {
-        f.number = this.hand[i][0];
-        f.color = this.hand[i][1];
         this.UpdateField(this.hand[i], f);
-        this.discard(deck, i);
-        return "GO";
+        //alert("Enemy used " + this.hand[i][0] + " " + this.hand[i][1] + "!");
+        res = this.discard(deck, i);
+        if (res == "WINCPU") return "WINCPU";
+        else return "GO";
       }
     }
     this.draw(1, deck);
@@ -109,34 +106,42 @@ export class cpu {
     const cardContainer = document.querySelector(".ultima-carta");
     cardContainer.innerHTML = "";
     const image = document.createElement("img");
+    f.card = card;
+    f.number = card[0];
+    if (card[0] == "+4CARDS" || card[0] == "CHANGE") {
+      f.color = this.randomColor();
+    } else f.color = card[1];
     image.src = card[2];
     cardContainer.prepend(image);
-    f.card = card;
   }
 
   discard(deck, i) {
     if (this.hand.length == 1) {
-      this.hand = [];
       if (
         this.hand[0][1] == "SPECIAL" ||
         this.hand[0][0] == "+2CARDS" ||
         this.hand[0][0] == "SWITCH" ||
         this.hand[0][0] == "STOP"
       ) {
+        this.hand = [];
         this.draw(1, deck);
         console.log(
-          "You can not finish the game with Not number card!! Draw new card!"
+          "cpu can not finish the game with not number card!! Cpu draw new card! Enemy yells `UNO`"
         );
-        console.log("Enemy yells `UNO`");
-        return;
+        return "GO";
       } else {
+        this.hand = [];
         //victory of cpu 0 cards left
         alert("THE ENEMY WIN, YOU LOSE. SCEMO TRY AGAIN");
+        return "WINCPU";
       }
     }
     this.hand.splice(i, 1);
     if (this.hand.length == 1) {
       alert("THE ENEMY HAS ONE CARD LEFT!! DIAMO EEEHHHHH");
-    } else console.log("The enemy still has " + this.hand.length + " cards!");
+    } else {
+      console.log("The enemy still has " + this.hand.length + " cards!");
+    }
+    return "GO";
   }
 }

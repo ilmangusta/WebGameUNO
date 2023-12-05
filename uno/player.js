@@ -19,12 +19,12 @@ export class Player {
     const cardContainer = document.querySelector(".ultima-carta");
     cardContainer.innerHTML = "";
     console.log("carta: " + card);
+    f.card = card;
+    f.number = card[0];
+    f.color = card[1];
     const image = document.createElement("img");
     image.src = card[2];
     cardContainer.prepend(image);
-    f.card = card;
-    f.color = card[1];
-    f.number = card[0];
 
     if (card[0] == "SKIP") {
       this.draw(1, deck);
@@ -71,19 +71,21 @@ export class Player {
         this.hand[0][0] == "SWITCH" ||
         this.hand[0][0] == "STOP"
       ) {
-        this.hand.splice(i, 1);
+        this.hand = [];
         this.draw(1, deck);
         console.log(
           "You can not finish the game with Not number card!! Draw new card!"
         );
-        console.log("You yell `UNO`");
-        return;
+        alert("You yell `UNO`");
+        return "GO";
+      } else {
+        this.hand = [];
+        return "PLAYERWIN;";
       }
     } else {
       this.hand.splice(i, 1);
-      console.log("You still have " + this.hand.length + " cards!");
       if (this.hand.length == 1) {
-        console.log("YOU YELL `UNO`!!");
+        alert("YOU YELL `UNO`!!");
       }
     }
   }
