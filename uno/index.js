@@ -16,6 +16,7 @@ function UNOgame() {
 
   let enemy = new cpu();
   enemy.newHand(deck); //Avversario ha le carte
+  ViewHandCPU();
 
   let f = new field();
   f.newField(deck);
@@ -66,7 +67,7 @@ function UNOgame() {
       () => {
         console.log("pesco carta");
         DrawCard();
-        //cpuTurn();
+        cpuTurn();
       },
       true
     );
@@ -149,6 +150,7 @@ function UNOgame() {
   function cpuMove() {
     var move_cpu = enemy.move(p, f, deck); //cpu moving
     ViewHand();
+    ViewHandCPU();
     return move_cpu;
   }
 
@@ -169,9 +171,23 @@ function UNOgame() {
         (e) => {
           UseCard(e);
           ViewHand();
+          ViewHandCPU();
         },
         true
       );
+    }
+  }
+
+  function ViewHandCPU() {
+    const myCardContainer = document.querySelector(".cpu-cards");
+    myCardContainer.innerHTML = "";
+    for (var i = 0; i < enemy.hand.length; i++) {
+      const cardContainer = document.createElement("div");
+      cardContainer.classList.add("cpu-card-element");
+      const image = document.createElement("img");
+      image.src = "images/joker.png";
+      cardContainer.prepend(image);
+      myCardContainer.prepend(cardContainer);
     }
   }
 }

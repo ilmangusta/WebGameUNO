@@ -84,6 +84,29 @@
     border: 1px solid black;
   }
 
+  .cpu-cards {
+    display: flex;
+    justify-content: center;
+    height: 110px;
+    width: 100%;
+    gap: 3px;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+  }
+
+  .cpu-card-element {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cpu-card-element img {
+    width: 40px;
+    height: 60px;
+    border: 3px solid #000;
+    border-radius: 12px;
+  }
+
   .ultima-carta {
     height: 220px;
     width: 110px;
@@ -325,7 +348,8 @@
   }
 
   .ultima-carta img {
-    width: 165px;
+    width: 160px;
+    height: 220px;
     border: 3px solid #000;
     border-radius: 20px;
   }
@@ -337,7 +361,7 @@
 
   .deck {
     width: 180px;
-    height: 140px;
+    height: 10px;
     position: relative;
   }
 
@@ -346,8 +370,8 @@
   }
 
   .deck img {
-    width: 170px;
-    height: 250px;
+    width: 160px;
+    height: 220px;
     border: 3px solid #000;
     border-radius: 20px;
   }
@@ -360,19 +384,6 @@
   .deck .card-decoratore-3 {
     top: -8px;
     left: -8px;
-  }
-
-  .my-cards-container {
-    display: flex;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    padding-bottom: 30px;
-    margin-bottom: 60px;
-    gap: 5px;
-    overflow-x: scroll;
-    scroll-snap-type: x mandatory;
-    scrollbar-color: black;
   }
 
   .black-overlay {
@@ -414,6 +425,19 @@
     font-family: "Courier New", Courier, monospace;
   }
 
+  .my-cards-container {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding-bottom: 30px;
+    margin-bottom: 60px;
+    gap: 5px;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scrollbar-color: black;
+  }
+
   .my-card-element {
     display: flex;
     justify-content: center;
@@ -421,7 +445,28 @@
   }
 
   .my-card-element img {
-    width: 160px;
+    width: 140px;
+    border: 3px solid #000;
+    border-radius: 20px;
+  }
+
+  .cpu-cards {
+    display: flex;
+    justify-content: center;
+    height: 110px;
+    width: 100%;
+    gap: 3px;
+  }
+
+  .cpu-card-element {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cpu-card-element img {
+    width: 70px;
+    height: 100px;
     border: 3px solid #000;
     border-radius: 20px;
   }
