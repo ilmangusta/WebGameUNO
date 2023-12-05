@@ -103,7 +103,7 @@ function UNOgame() {
       //scelta carta ok
       move_player = p.move(card, f, deck, enemy);
       res = p.discard(card, index, deck);
-      if (res === "PLAYERWIN") {
+      if (res === "PLAYERWIN" || p.hand.length === 0) {
         alert("HAI VINTO COGLIOOOO");
         return finishGame();
       }

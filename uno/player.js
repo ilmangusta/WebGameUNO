@@ -26,11 +26,7 @@ export class Player {
     image.src = card[2];
     cardContainer.prepend(image);
 
-    if (card[0] == "SKIP") {
-      this.draw(1, deck);
-      console.log("You drew one card and skipped the turn!");
-      return "GO";
-    } else if (card[0] == "+4CARDS") {
+    if (card[0] == "+4CARDS") {
       var color = prompt(
         "Enemy draw 4 cards and you choose the color!\nBLUE - GREEN - RED - YELLOW"
       );
@@ -45,19 +41,13 @@ export class Player {
       return "GO";
     } else if (card[0] == "+2CARDS") {
       console.log("Enemy draw 2 cards!");
-      f.number = card[0];
-      f.color = card[1];
       cpu.draw(2, deck);
       return "GO";
     } else if (card[0] == "STOP") {
       console.log("Enemy skip one turn!");
-      f.color = card[1];
-      f.number = card[0];
       return "SKIP";
     } else if (card[0] == "SWITCH") {
       console.log("Change Spin! Enemy skip one turn!");
-      f.color = card[1];
-      f.number = card[0];
       return "SKIP";
     }
     return "GO";
@@ -66,10 +56,10 @@ export class Player {
   discard(card, i, deck) {
     if (this.hand.length == 1) {
       if (
-        this.hand[0][1] == "SPECIAL" ||
-        this.hand[0][0] == "+2CARDS" ||
-        this.hand[0][0] == "SWITCH" ||
-        this.hand[0][0] == "STOP"
+        card[1] == "SPECIAL" ||
+        card[0] == "+2CARDS" ||
+        card[0] == "SWITCH" ||
+        card[0] == "STOP"
       ) {
         this.hand = [];
         this.draw(1, deck);
