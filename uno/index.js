@@ -67,6 +67,7 @@ function UNOgame() {
       () => {
         console.log("pesco carta");
         DrawCard();
+        ViewHand();
         cpuTurn();
       },
       true
@@ -104,7 +105,6 @@ function UNOgame() {
 
   function DrawCard() {
     p.draw(1, deck);
-    ViewHand();
   }
 
   function finishGame() {
@@ -159,6 +159,8 @@ function UNOgame() {
     var turnEnemy = "SKIP";
     while (turnEnemy == "SKIP") {
       turnEnemy = cpuMove();
+      ViewHand();
+      ViewHandCPU();
       if (turnEnemy == "WINCPU") {
         return finishGame();
       }
@@ -167,10 +169,7 @@ function UNOgame() {
   }
 
   function cpuMove() {
-    var move_cpu = enemy.move(p, f, deck); //cpu moving
-    ViewHand();
-    ViewHandCPU();
-    return move_cpu;
+    return enemy.move(p, f, deck); //cpu moving
   }
 
   function ViewHand() {
