@@ -73,7 +73,7 @@ export class Player {
       ) {
         this.hand = [];
         this.draw(1, deck);
-        console.log(
+        alert(
           "You can not finish the game with Not number card!! Draw new card!"
         );
         alert("You yell `UNO`");
@@ -88,5 +88,6 @@ export class Player {
         alert("YOU YELL `UNO`!!");
       }
     }
+    return "GO";
   }
 }

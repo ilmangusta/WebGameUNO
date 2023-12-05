@@ -60,7 +60,7 @@ export class cpu {
       ) {
         p.draw(2, deck);
         this.UpdateField(this.hand[i], f);
-        alert("Enemy used +2 Card " + this.hand[i][1] + ". You draw 2 cards!");
+        //alert("Enemy used +2 Card " + this.hand[i][1] + ". You draw 2 cards!");
         res = this.discard(deck, i);
         if (res == "WINCPU") return "WINCPU";
         else return "GO";

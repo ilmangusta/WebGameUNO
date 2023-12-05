@@ -65,8 +65,8 @@ function UNOgame() {
       "click",
       () => {
         console.log("pesco carta");
-        DrawCard(1);
-        cpuTurn();
+        DrawCard();
+        //cpuTurn();
       },
       true
     );
@@ -82,7 +82,7 @@ function UNOgame() {
     );
   }
 
-  function DrawCard(i) {
+  function DrawCard() {
     p.draw(1, deck);
     ViewHand();
   }
@@ -103,7 +103,7 @@ function UNOgame() {
       //scelta carta ok
       move_player = p.move(card, f, deck, enemy);
       res = p.discard(card, index, deck);
-      if (res == "PLAYERWIN") {
+      if (res === "PLAYERWIN") {
         alert("HAI VINTO COGLIOOOO");
         return finishGame();
       }
