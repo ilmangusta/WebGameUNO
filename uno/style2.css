@@ -108,7 +108,7 @@
   }
 
   .ultima-carta {
-    height: 220px;
+    height: 160px;
     width: 110px;
     position: relative;
   }
@@ -120,7 +120,7 @@
   }
 
   .deck {
-    height: 220px;
+    height: 160px;
     width: 110px;
     position: relative;
   }
@@ -149,7 +149,7 @@
   }
 
   .skip {
-    padding: 10px;
+    padding-top: 10px;
   }
 
   .skipbutton button {
@@ -180,6 +180,19 @@
     padding-bottom: 40px;
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
+  }
+
+  .my-card-element {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-position: center;
+  }
+
+  .my-card-element img {
+    width: 80px;
+    border: 1.6px solid #000;
+    border-radius: 10px;
   }
 
   .black-overlay {
@@ -219,19 +232,6 @@
     border-radius: 4px;
     font-size: 20px;
     font-family: "Courier New", Courier, monospace;
-  }
-
-  .my-card-element {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-position: center;
-  }
-
-  .my-card-element img {
-    width: 80px;
-    border: 2px solid #000;
-    border-radius: 10px;
   }
 
   .footer {
