@@ -81,6 +81,25 @@ function UNOgame() {
       },
       true
     );
+
+    const statsbutton = document.querySelector(".buttonleft2");
+    statsbutton.addEventListener(
+      "click",
+      () => {
+        alert("Non fa nulla sto coso");
+      },
+      true
+    );
+
+    const newgamebutton = document.querySelector(".buttonleft1");
+    newgamebutton.addEventListener(
+      "click",
+      () => {
+        const newUrl = "https://mangustaunowebapp.netlify.app";
+        window.location.replace(newUrl);
+      },
+      true
+    );
   }
 
   function DrawCard() {

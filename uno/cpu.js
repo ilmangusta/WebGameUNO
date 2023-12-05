@@ -94,11 +94,7 @@ export class cpu {
       }
     }
     this.draw(1, deck);
-    alert(
-      "The enemy draw one card and have " +
-        this.hand.length +
-        " cards! Your turn!"
-    );
+    //alert("The enemy draw one card and have " +this.hand.length +" cards! Your turn!");
     return "GO";
   }
 

@@ -63,7 +63,7 @@
     font-family: fantasy;
     font-size: 90%;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: rgba(127, 255, 212, 0.283);
+    background-color: #fff;
     color: black;
     border: 1px solid black;
   }
@@ -79,7 +79,7 @@
     font-family: fantasy;
     font-size: 90%;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: rgba(127, 255, 212, 0.283);
+    background-color: #fff;
     color: black;
     border: 1px solid black;
   }
@@ -88,7 +88,7 @@
     display: flex;
     justify-content: center;
     height: 110px;
-    width: 100%;
+    width: 100vw;
     gap: 3px;
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
@@ -165,7 +165,7 @@
     font-family: fantasy;
     font-size: 100%;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: rgba(127, 255, 212, 0.283);
+    background-color: #ffffff73;
     border: 1px solid black;
     color: black;
   }
