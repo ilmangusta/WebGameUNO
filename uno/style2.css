@@ -25,13 +25,13 @@
     flex-flow: column;
     justify-content: center;
     align-items: center;
-    gap: 30px;
   }
 
   .unologo {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding-bottom: 40px;
   }
   .unologo img {
     width: 100px;
@@ -125,10 +125,13 @@
     left: -8px;
   }
 
+  .skip {
+    padding-bottom: 50px;
+  }
+
   .skipbutton button {
     position: relative;
     top: 0;
-    padding: -30px;
     border-radius: 16px;
     text-align: center;
     height: 40px;
