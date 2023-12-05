@@ -149,7 +149,7 @@
   }
 
   .skip {
-    padding-bottom: 50px;
+    padding: 10px;
   }
 
   .skipbutton button {
@@ -157,8 +157,8 @@
     top: 0;
     border-radius: 16px;
     text-align: center;
-    height: 40px;
-    width: 100px;
+    height: 30px;
+    width: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
