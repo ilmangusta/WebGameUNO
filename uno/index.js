@@ -89,6 +89,8 @@ function UNOgame() {
 
   function finishGame() {
     alert("GIOCO FINITO, GIOCARE ANCORA?");
+    const newUrl = "https://mangustaunowebapp.netlify.app";
+    window.location.replace(newUrl);
     return;
   }
 
