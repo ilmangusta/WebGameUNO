@@ -30,7 +30,7 @@ async function UNOgame() {
   StartNewGame();
 
   const RULES =
-    "Welcome in MangustaNotUnoGame, a web based card game.\nRULES: the player can throw more than one card if has STOP or SWITCH card. Obviously also the enemy can throw more cards consecutively but due to bad javascript language it can not simulate pause/wait behavior (well, it could but not in this particolar case) so there are pop-up alerts to simulate it. If the player draw one card automatically skip the turn and the enemy can play his card. You can tap the field to discover what the color field is. \nPLEASE do not spam your cards or it can break the game. There is a 700ms delay between user move and enemy one. \nHave a nice game!";
+    "Welcome in MangustaNotUnoGame, a web based card game.\nRULES: the player can throw more than one card if has STOP or SWITCH cards in his hand. Obviously also the enemy can throw more cards consecutively but due to bad javascript language it can not simulate this behavior of consecutive move with pause (well, it could but not in this particolar action) so there are pop-up alerts to simulate it. If the player draw one card automatically skip the turn and the enemy can play his card. You can tap the field to discover what the color field is. \nPLEASE do not spam your cards or it can break the game. There is a 700ms delay between user move and enemy one. \nHave a nice game!";
 
   function createField(f) {
     const cardContainer = document.querySelector(".ultima-carta");
@@ -177,6 +177,7 @@ async function UNOgame() {
       }
       if (move_player == "GO") {
         //alert("Turno avversario");
+        ViewHandCPU();
         sleep(700).then(() => cpuTurn());
       } else {
         console.log("Avversario salta turno");
@@ -204,20 +205,16 @@ async function UNOgame() {
   function cpuTurn() {
     var turnEnemy = "SKIP";
     while (turnEnemy == "SKIP") {
-      sleep(700).then(() => {
-        console.log("Aspetto");
-      });
-
       turnEnemy = cpuMove();
-      console.log("turnenemy: " + turnEnemy);
+      //console.log("turnenemy: " + turnEnemy);
       if (turnEnemy == "WINCPU") {
         return finishGame();
       } else if (turnEnemy == "GO") {
         return;
       }
-      console.log("cputurn: " + turnEnemy);
+      //console.log("cputurn: " + turnEnemy);
     }
-    console.log("out while: " + turnEnemy);
+    //console.log("out while: " + turnEnemy);
   }
 
   const cpuMove = () => {
@@ -246,7 +243,6 @@ async function UNOgame() {
         (e) => {
           UseCard(e);
           ViewHand();
-          ViewHandCPU();
         },
         true
       );
