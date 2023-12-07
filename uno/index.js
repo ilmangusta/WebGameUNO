@@ -3,11 +3,11 @@ import { cpu } from "./cpu.js";
 import { Deck } from "./deck.js";
 import { Player } from "./player.js";
 
-function UNOgame() {
+async function UNOgame() {
   var used_card; //card used by user
   var move_player; //action of the user card
   var move_cpu; //action of the cpu card
-  //var name = prompt("Choose a name player:"); //new name for player
+
   //1. inizializzo le impostazioni basi del gioco
   let deck = new Deck();
   deck.randomize();
@@ -29,6 +29,9 @@ function UNOgame() {
   createField(f);
   StartNewGame();
 
+  const RULES =
+    "Welcome in MangustaNotUnoGame, a web based card game.\nRULES: the player can throw more than one card if has STOP or SWITCH card. Obviously also the enemy can throw more cards consecutively but due to bad javascript language it can not simulate pause/wait behavior (well, it could but not in this particolar case) so there are pop-up alerts to simulate it. If the player draw one card automatically skip the turn and the enemy can play his card. You can tap the field to discover what the color field is. \nPLEASE do not spam your cards or it can break the game. There is a 700ms delay between user move and enemy one. \nHave a nice game!";
+
   function createField(f) {
     const cardContainer = document.querySelector(".ultima-carta");
     const image = document.createElement("img");
@@ -48,13 +51,14 @@ function UNOgame() {
 
     modale.prepend(document.createElement("input"));
     const btn = document.createElement("button");
-    btn.textContent = "Inizia";
+    btn.textContent = "Start";
     btn.addEventListener(
       "click",
       () => {
         ViewHand();
         modale.remove();
         overlay.remove();
+        alert(RULES);
       },
       true
     );
@@ -68,7 +72,18 @@ function UNOgame() {
         console.log("pesco carta");
         DrawCard();
         ViewHand();
-        cpuTurn();
+        sleep(700).then(() => {
+          cpuTurn();
+        });
+      },
+      true
+    );
+
+    const fieldcontainer = document.querySelector(".ultima-carta");
+    fieldcontainer.addEventListener(
+      "click",
+      () => {
+        alert("COLOR: " + f.color);
       },
       true
     );
@@ -78,7 +93,7 @@ function UNOgame() {
       "click",
       () => {
         console.log("salto turno");
-        cpuTurn();
+        sleep(700).then(() => cpuTurn());
       },
       true
     );
@@ -108,10 +123,43 @@ function UNOgame() {
   }
 
   function finishGame() {
-    alert("GIOCO FINITO, GIOCARE ANCORA?");
-    const newUrl = "https://mangustaunowebapp.netlify.app";
-    window.location.replace(newUrl);
-    return;
+    const body = document.querySelector("body");
+
+    const overlay = document.createElement("div");
+    overlay.classList.add("black-overlay");
+    body.prepend(overlay);
+
+    const modale = document.createElement("div");
+    modale.classList.add("prompt-nome");
+
+    modale.prepend(
+      document.createElement("p").innerHTML("Match ended, play again?")
+    );
+
+    const btnyes = document.createElement("button");
+    btnyes.textContent = "Yes";
+    btnyes.addEventListener(
+      "click",
+      () => {
+        const newUrl = "https://mangustaunowebapp.netlify.app";
+        window.location.replace(newUrl);
+      },
+      true
+    );
+
+    const btnno = document.createElement("button");
+    btnno.textContent = "No";
+    btnno.addEventListener(
+      "click",
+      () => {
+        alert("MATCH ENDED");
+      },
+      true
+    );
+
+    modale.append(btnyes);
+    modale.append(btnno);
+    body.prepend(modale);
   }
 
   function UseCard(e) {
@@ -124,20 +172,18 @@ function UNOgame() {
       move_player = p.move(card, f, deck, enemy);
       res = p.discard(card, index, deck);
       if (res === "PLAYERWIN" || p.hand.length === 0) {
-        alert("HAI VINTO COGLIOOOO");
+        alert("YOU WIN THE MATCH!!");
         return finishGame();
       }
       if (move_player == "GO") {
         //alert("Turno avversario");
-        setTimeout(() => {
-          cpuTurn();
-        }, 700);
+        sleep(700).then(() => cpuTurn());
       } else {
         console.log("Avversario salta turno");
       }
     } else {
       //azione non consentita nnon rimuovere carta
-      alert("carta non giusta. Campo è: " + f.number + " " + f.color);
+      alert("Card not right, color field is: " + f.color);
       return;
     }
   }
@@ -158,19 +204,30 @@ function UNOgame() {
   function cpuTurn() {
     var turnEnemy = "SKIP";
     while (turnEnemy == "SKIP") {
+      sleep(700).then(() => {
+        console.log("Aspetto");
+      });
+
       turnEnemy = cpuMove();
-      ViewHand();
-      ViewHandCPU();
+      console.log("turnenemy: " + turnEnemy);
       if (turnEnemy == "WINCPU") {
         return finishGame();
+      } else if (turnEnemy == "GO") {
+        return;
       }
       console.log("cputurn: " + turnEnemy);
     }
+    console.log("out while: " + turnEnemy);
   }
 
-  function cpuMove() {
-    return enemy.move(p, f, deck); //cpu moving
-  }
+  const cpuMove = () => {
+    var value;
+    value = enemy.move(p, f, deck);
+    console.log("value: " + value);
+    ViewHand();
+    ViewHandCPU();
+    return value;
+  };
 
   function ViewHand() {
     const myCardContainer = document.querySelector(".my-cards-container");
@@ -207,6 +264,10 @@ function UNOgame() {
       cardContainer.prepend(image);
       myCardContainer.prepend(cardContainer);
     }
+  }
+
+  function sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 }
 

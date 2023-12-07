@@ -56,7 +56,7 @@
     border-radius: 16px;
     text-align: center;
     height: 35px;
-    width: 140px;
+    width: 130px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -72,7 +72,7 @@
     border-radius: 16px;
     text-align: center;
     height: 35px;
-    width: 90px;
+    width: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -296,7 +296,7 @@
     border-radius: 20px;
     text-align: center;
     height: 50px;
-    width: 230px;
+    width: 210px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -312,7 +312,7 @@
     border-radius: 20px;
     text-align: center;
     height: 50px;
-    width: 150px;
+    width: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -447,7 +447,7 @@
   .my-card-element img {
     width: 140px;
     border: 3px solid #000;
-    border-radius: 20px;
+    border-radius: 16px;
   }
 
   .cpu-cards {
@@ -468,7 +468,22 @@
     width: 70px;
     height: 100px;
     border: 3px solid #000;
-    border-radius: 20px;
+    border-radius: 12px;
+  }
+
+  .color-buttons {
+    display: grid;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    border-radius: 8px;
+    background-color: #fff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
   }
 
   @media only screen and (max-width: 600px) {

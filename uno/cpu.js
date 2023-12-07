@@ -1,7 +1,7 @@
 export class cpu {
   //class definition for all cpu actions.
   hand = [];
-  constructor() {
+  cpu() {
     this.hand = [];
   }
 
@@ -40,8 +40,8 @@ export class cpu {
       if (this.hand[i][0] == "+4CARDS") {
         p.draw(4, deck);
         this.UpdateField(this.hand[i], f);
-        alert(
-          "Enemy used +4 Card. You draw 4 cards and enemy choose: " + f.color
+        this.sleep(300).then(() =>
+          alert("Enemy used Change Color. Enemy choose: " + f.color)
         );
         res = this.discard(deck, i);
         if (res == "WINCPU") return "WINCPU";
@@ -49,7 +49,9 @@ export class cpu {
       }
       if (this.hand[i][0] == "CHANGE") {
         this.UpdateField(this.hand[i], f);
-        alert("Enemy used Change Color. Enemy choose: " + f.color);
+        this.sleep(300).then(() =>
+          alert("Enemy used Change Color. Enemy choose: " + f.color)
+        );
         res = this.discard(deck, i);
         if (res == "WINCPU") return "WINCPU";
         else return "GO";
@@ -139,5 +141,9 @@ export class cpu {
       console.log("The enemy still has " + this.hand.length + " cards!");
     }
     return "GO";
+  }
+
+  sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 }
